@@ -38,13 +38,13 @@ build-backend = "uv_build"
 module-name = "ap_agent"
 
 [tool.pytest.ini_options]
-pythonpath = ["src"]
+pythonpath = ["src", "."]
 testpaths = ["tests"]
 markers = ["integration: needs a real database (DATABASE_URL); skipped when unset"]
 
 [tool.ruff]
 line-length = 100
-src = ["src", "tests", "scripts"]
+src = ["src", "tests", "scripts", "."]
 
 [dependency-groups]
 dev = [
