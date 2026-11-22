@@ -1,0 +1,54 @@
+[project]
+name = "ap-invoice-tracking-agent"
+version = "0.1.0"
+description = "AP invoice tracking agent (portfolio project, all data fake)"
+readme = "README.md"
+authors = [
+    { name = "Simer Singh", email = "simer169@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "apscheduler>=3.11.3",
+    "boto3>=1.44.8",
+    "faker>=40.63.0",
+    "fastapi>=0.165.0",
+    "httpx>=0.28.1",
+    "imap-tools>=1.16.0",
+    "instructor>=1.17.0",
+    "langfuse>=5.2.0",
+    "langgraph>=1.2.24",
+    "langgraph-checkpoint-postgres>=3.2.1",
+    "openai>=3.3.0",
+    "pdfplumber>=0.11.10",
+    "psycopg[binary,pool]>=3.3.9",
+    "pydantic>=2.14.4",
+    "pydantic-settings>=2.16.3",
+    "pymupdf>=2.1",
+    "rapidfuzz>=3.14.6",
+    "reportlab>=5.1.0",
+    "streamlit>=1.67.0",
+    "uvicorn>=0.54.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.21,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "ap_agent"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+markers = ["integration: needs a real database (DATABASE_URL); skipped when unset"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests", "scripts"]
+
+[dependency-groups]
+dev = [
+    "moto>=5.2.5",
+    "pytest>=9.2.0",
+    "ruff>=0.17.6",
+]
