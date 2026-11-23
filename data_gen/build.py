@@ -12,6 +12,7 @@ import psycopg
 
 from ap_agent.config import get_database_url
 from data_gen import db
+from data_gen.artifacts import EML_DIR, PDF_DIR, TRUTH_PATH, build_artifacts, summary
 from data_gen.generate import Dataset, generate
 
 SCHEDULE_PATH = Path(__file__).resolve().parent / "output" / "schedule.json"
@@ -64,6 +65,9 @@ def main(argv: list[str] | None = None) -> int:
     print(format_table(counts))
     print("\nPO status: " + ", ".join(f"{k}={v}" for k, v in statuses.items()))
     print(f"scheduled deliveries (not inserted): {n_sched} -> {SCHEDULE_PATH}")
+    specs = build_artifacts(ds, args.seed)
+    print(f"\ninvoices: {len(specs)}  " + ", ".join(f"{k}={v}" for k, v in summary(specs).items()))
+    print(f"PDFs -> {PDF_DIR}\nemails -> {EML_DIR} (+5 non-invoice)\nanswer key -> {TRUTH_PATH}")
     return 0
 
 

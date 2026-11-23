@@ -43,7 +43,7 @@ def main() -> int:
     try:
         get_settings()
     except SettingsError as exc:
-        print(f"FAIL settings: {exc}")
+        print(f"FAIL settingsppppppp: {exc}")
         return 1
     checks: list[tuple[str, Callable[[], str]]] = [
         ("openrouter", check_openrouter),

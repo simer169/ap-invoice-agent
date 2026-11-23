@@ -1,0 +1,4372 @@
+{
+  "seed": 42,
+  "demo_today": "2026-11-05",
+  "invoices": [
+    {
+      "id": "INV-001",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-19",
+      "scanned": false,
+      "pdf_file": "gen_001_inv-31722.pdf",
+      "pdf_sha256": "8804c27d0f2ddce65e0bb2eb0b0c359c9681c6c6e981827b0b1e2556ffa28c92",
+      "eml_file": "gen_001_inv-31722.eml",
+      "attachment_name": "Invoice_INV_31722.pdf",
+      "message_id": "<90d5ff56-1d86-43de-b193-6b9532392f8f@walkercoatings.example>",
+      "received": "2026-11-01T07:18:00",
+      "source_po": "GEN-PO-0039",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Walker Industrial Coatings",
+        "invoice_number": "INV-31722",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0039",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "55362.27",
+        "tax": "7197.10",
+        "total": "62559.37",
+        "line_items": [
+          {
+            "part_no": "PNT-8100",
+            "description": "Industrial enamel, black 20L",
+            "qty": 62,
+            "unit_price": "134.30",
+            "line_total": "8326.60"
+          },
+          {
+            "part_no": "PNT-8104",
+            "description": "Industrial enamel, red 20L",
+            "qty": 53,
+            "unit_price": "134.15",
+            "line_total": "7109.95"
+          },
+          {
+            "part_no": "PNT-8110",
+            "description": "Zinc-rich primer 20L",
+            "qty": 68,
+            "unit_price": "181.06",
+            "line_total": "12312.08"
+          },
+          {
+            "part_no": "PNT-8115",
+            "description": "Reflective stripe tape roll",
+            "qty": 61,
+            "unit_price": "91.54",
+            "line_total": "5583.94"
+          },
+          {
+            "part_no": "PNT-8120",
+            "description": "Thinner 20L",
+            "qty": 63,
+            "unit_price": "69.72",
+            "line_total": "4392.36"
+          },
+          {
+            "part_no": "PNT-8126",
+            "description": "Stencil kit, reporting marks",
+            "qty": 22,
+            "unit_price": "130.63",
+            "line_total": "2873.86"
+          },
+          {
+            "part_no": "PNT-8131",
+            "description": "Epoxy topcoat 20L",
+            "qty": 50,
+            "unit_price": "231.18",
+            "line_total": "11559.00"
+          },
+          {
+            "part_no": "PNT-8138",
+            "description": "Rust converter 4L",
+            "qty": 64,
+            "unit_price": "50.07",
+            "line_total": "3204.48"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-002",
+      "split": "eval",
+      "scenario": "clean",
+      "underlying_scenario": null,
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_002_inv-11136.pdf",
+      "pdf_sha256": "2ea49ba0b8673740d6028e82703228d3448074289ac458d1f6b842b40c90d38b",
+      "eml_file": "gen_002_inv-11136.eml",
+      "attachment_name": "Invoice_INV_11136.pdf",
+      "message_id": "<8fd1992c-0d91-4eaf-9ca8-aa4a35ad5742@bernardcoatings.example>",
+      "received": "2026-11-01T07:19:00",
+      "source_po": "GEN-PO-0041",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Bernard Industrial Coatings",
+        "invoice_number": "INV-11136",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0041",
+        "currency": "CAD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "42136.31",
+        "tax": "5477.72",
+        "total": "47614.03",
+        "line_items": [
+          {
+            "part_no": "PNT-8115",
+            "description": "Reflective stripe tape roll",
+            "qty": 89,
+            "unit_price": "88.39",
+            "line_total": "7866.71"
+          },
+          {
+            "part_no": "PNT-8120",
+            "description": "Thinner 20L",
+            "qty": 88,
+            "unit_price": "79.60",
+            "line_total": "7004.80"
+          },
+          {
+            "part_no": "PNT-8131",
+            "description": "Epoxy topcoat 20L",
+            "qty": 96,
+            "unit_price": "231.76",
+            "line_total": "22248.96"
+          },
+          {
+            "part_no": "PNT-8138",
+            "description": "Rust converter 4L",
+            "qty": 92,
+            "unit_price": "54.52",
+            "line_total": "5015.84"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-003",
+      "split": "eval",
+      "scenario": "no_po",
+      "underlying_scenario": null,
+      "expected_outcome": "EXCEPTION_NO_PO",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_003_28268.pdf",
+      "pdf_sha256": "ba06942c4bbf4bdb2d44daa5fc29772157ea45682ef12d13ffe74a6aa25ae5b8",
+      "eml_file": "gen_003_28268.eml",
+      "attachment_name": "Invoice_28268.pdf",
+      "message_id": "<e2f421d8-06d3-4b9d-b90d-42e2eabba00e@millerbearings.example>",
+      "received": "2026-11-01T07:34:00",
+      "source_po": "GEN-PO-0011",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Miller Roller Bearings",
+        "invoice_number": "28268",
+        "invoice_date": "2026-10-30",
+        "po_number": null,
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "37431.56",
+        "tax": "4866.10",
+        "total": "42297.66",
+        "line_items": [
+          {
+            "part_no": "BRG-3301",
+            "description": "Tapered roller bearing, class K",
+            "qty": 13,
+            "unit_price": "326.65",
+            "line_total": "4246.45"
+          },
+          {
+            "part_no": "BRG-3305",
+            "description": "Tapered roller bearing, class F",
+            "qty": 73,
+            "unit_price": "266.21",
+            "line_total": "19433.33"
+          },
+          {
+            "part_no": "BRG-3310",
+            "description": "Bearing adapter",
+            "qty": 51,
+            "unit_price": "122.71",
+            "line_total": "6258.21"
+          },
+          {
+            "part_no": "BRG-3314",
+            "description": "Bearing seal, rear",
+            "qty": 33,
+            "unit_price": "31.68",
+            "line_total": "1045.44"
+          },
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 72,
+            "unit_price": "18.91",
+            "line_total": "1361.52"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 37,
+            "unit_price": "18.28",
+            "line_total": "676.36"
+          },
+          {
+            "part_no": "BRG-3327",
+            "description": "Lubricant cartridge",
+            "qty": 55,
+            "unit_price": "27.14",
+            "line_total": "1492.70"
+          },
+          {
+            "part_no": "BRG-3333",
+            "description": "Bearing wear sleeve",
+            "qty": 43,
+            "unit_price": "67.85",
+            "line_total": "2917.55"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-004",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-29",
+      "scanned": false,
+      "pdf_file": "gen_004_inv-36133.pdf",
+      "pdf_sha256": "df7c6d387e27e21fc4e99d33b627441f336175808e91b8f1222157bcfe1523ec",
+      "eml_file": "gen_004_inv-36133.eml",
+      "attachment_name": "Invoice_INV_36133.pdf",
+      "message_id": "<8b01c555-dbf5-42bd-94c1-475987bbdcb4@wolfebearings.example>",
+      "received": "2026-11-01T08:06:00",
+      "source_po": "GEN-PO-0010",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Wolfe Precision Bearings",
+        "invoice_number": "INV-36133",
+        "invoice_date": "2026-10-31",
+        "po_number": "GEN-PO-0010",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "13763.03",
+        "tax": "1789.19",
+        "total": "15552.22",
+        "line_items": [
+          {
+            "part_no": "BRG-3305",
+            "description": "Tapered roller bearing, class F",
+            "qty": 11,
+            "unit_price": "276.25",
+            "line_total": "3038.75"
+          },
+          {
+            "part_no": "BRG-3310",
+            "description": "Bearing adapter",
+            "qty": 63,
+            "unit_price": "139.13",
+            "line_total": "8765.19"
+          },
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 72,
+            "unit_price": "21.91",
+            "line_total": "1577.52"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 23,
+            "unit_price": "16.59",
+            "line_total": "381.57"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-005",
+      "split": "eval",
+      "scenario": "no_po",
+      "underlying_scenario": null,
+      "expected_outcome": "EXCEPTION_NO_PO",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_005_sh-26-8411.pdf",
+      "pdf_sha256": "f00a3062d376a135ddfd77798b61385c6e7d3486876f3051a0300f1f8990333b",
+      "eml_file": "gen_005_sh-26-8411.eml",
+      "attachment_name": "Invoice_SH_26_8411.pdf",
+      "message_id": "<7313f5a1-2257-4c3d-8890-479234cbd0c4@shaffercouplers.example>",
+      "received": "2026-11-01T09:16:00",
+      "source_po": "GEN-PO-0014",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Shaffer Coupler Works",
+        "invoice_number": "SH-26-8411",
+        "invoice_date": "2026-11-01",
+        "po_number": null,
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "75740.47",
+        "tax": "9846.26",
+        "total": "85586.73",
+        "line_items": [
+          {
+            "part_no": "CPL-7100",
+            "description": "Type E coupler body",
+            "qty": 12,
+            "unit_price": "1885.16",
+            "line_total": "22621.92"
+          },
+          {
+            "part_no": "CPL-7105",
+            "description": "Type F coupler body",
+            "qty": 7,
+            "unit_price": "2225.34",
+            "line_total": "15577.38"
+          },
+          {
+            "part_no": "CPL-7112",
+            "description": "Coupler knuckle",
+            "qty": 3,
+            "unit_price": "397.76",
+            "line_total": "1193.28"
+          },
+          {
+            "part_no": "CPL-7118",
+            "description": "Coupler yoke",
+            "qty": 10,
+            "unit_price": "702.22",
+            "line_total": "7022.20"
+          },
+          {
+            "part_no": "CPL-7121",
+            "description": "Draft gear, cushioning",
+            "qty": 17,
+            "unit_price": "1487.72",
+            "line_total": "25291.24"
+          },
+          {
+            "part_no": "CPL-7130",
+            "description": "Coupler pin",
+            "qty": 5,
+            "unit_price": "52.21",
+            "line_total": "261.05"
+          },
+          {
+            "part_no": "CPL-7136",
+            "description": "Coupler carrier plate",
+            "qty": 4,
+            "unit_price": "244.54",
+            "line_total": "978.16"
+          },
+          {
+            "part_no": "CPL-7142",
+            "description": "Uncoupling lever assembly",
+            "qty": 14,
+            "unit_price": "199.66",
+            "line_total": "2795.24"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-006",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-14",
+      "scanned": false,
+      "pdf_file": "gen_006_inv-11186.pdf",
+      "pdf_sha256": "10cd02e440631a656072e901922d8a2bc2c822f7379766506526cd9d54eb8b81",
+      "eml_file": "gen_006_inv-11186.eml",
+      "attachment_name": "Invoice_INV_11186.pdf",
+      "message_id": "<84211bcb-df88-4626-bbf1-3a0a27c07307@bernardcoatings.example>",
+      "received": "2026-11-01T11:35:00",
+      "source_po": "GEN-PO-0053",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Bernard Industrial Coatings",
+        "invoice_number": "INV-11186",
+        "invoice_date": "2026-10-31",
+        "po_number": "GEN-PO-0053",
+        "currency": "CAD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "27072.86",
+        "tax": "3519.47",
+        "total": "30592.33",
+        "line_items": [
+          {
+            "part_no": "PNT-8115",
+            "description": "Reflective stripe tape roll",
+            "qty": 30,
+            "unit_price": "88.39",
+            "line_total": "2651.70"
+          },
+          {
+            "part_no": "PNT-8120",
+            "description": "Thinner 20L",
+            "qty": 35,
+            "unit_price": "79.60",
+            "line_total": "2786.00"
+          },
+          {
+            "part_no": "PNT-8131",
+            "description": "Epoxy topcoat 20L",
+            "qty": 87,
+            "unit_price": "231.76",
+            "line_total": "20163.12"
+          },
+          {
+            "part_no": "PNT-8138",
+            "description": "Rust converter 4L",
+            "qty": 27,
+            "unit_price": "54.52",
+            "line_total": "1472.04"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-007",
+      "split": "eval",
+      "scenario": "clean",
+      "underlying_scenario": null,
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_007_29423.pdf",
+      "pdf_sha256": "07d1dce6009710c187024ba46ac556a7e5266a659fdb7aa91f8540639b06d49a",
+      "eml_file": "gen_007_29423.eml",
+      "attachment_name": "Invoice_29423.pdf",
+      "message_id": "<77ceb394-d41e-44ec-b412-869fb432f408@robinsonbrakeparts.example>",
+      "received": "2026-11-01T11:52:00",
+      "source_po": "GEN-PO-0023",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Robinson Brake Products",
+        "invoice_number": "29423",
+        "invoice_date": "2026-10-30",
+        "po_number": "GEN-PO-0023",
+        "currency": "CAD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "80123.69",
+        "tax": "10416.08",
+        "total": "90539.77",
+        "line_items": [
+          {
+            "part_no": "BRK-4410",
+            "description": "Composition brake shoe, high-friction",
+            "qty": 170,
+            "unit_price": "38.06",
+            "line_total": "6470.20"
+          },
+          {
+            "part_no": "BRK-4420",
+            "description": "Brake head, cast",
+            "qty": 168,
+            "unit_price": "92.93",
+            "line_total": "15612.24"
+          },
+          {
+            "part_no": "BRK-4440",
+            "description": "Brake hanger assembly",
+            "qty": 188,
+            "unit_price": "68.30",
+            "line_total": "12840.40"
+          },
+          {
+            "part_no": "BRK-4452",
+            "description": "Slack adjuster",
+            "qty": 145,
+            "unit_price": "311.73",
+            "line_total": "45200.85"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-008",
+      "split": "eval",
+      "scenario": "clean",
+      "underlying_scenario": null,
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_008_10081.pdf",
+      "pdf_sha256": "32d0e2eabf6fccf38bb4fd6d08f16f55d2d7224c16d1d2c0001ecc8f2db00f19",
+      "eml_file": "gen_008_10081.eml",
+      "attachment_name": "Invoice_10081.pdf",
+      "message_id": "<e82da96f-e29f-4255-b0a2-6c54be6c25c0@robinsonbearings.example>",
+      "received": "2026-11-01T15:14:00",
+      "source_po": "GEN-PO-0020",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Robinson Bearing Co",
+        "invoice_number": "10081",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0020",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "8407.57",
+        "tax": "1092.98",
+        "total": "9500.55",
+        "line_items": [
+          {
+            "part_no": "BRG-3301",
+            "description": "Tapered roller bearing, class K",
+            "qty": 10,
+            "unit_price": "324.38",
+            "line_total": "3243.80"
+          },
+          {
+            "part_no": "BRG-3314",
+            "description": "Bearing seal, rear",
+            "qty": 79,
+            "unit_price": "34.22",
+            "line_total": "2703.38"
+          },
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 69,
+            "unit_price": "19.43",
+            "line_total": "1340.67"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 62,
+            "unit_price": "18.06",
+            "line_total": "1119.72"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-009",
+      "split": "eval",
+      "scenario": "partial_never",
+      "underlying_scenario": null,
+      "expected_outcome": "STAYS_WAITING",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_009_do-26-7803.pdf",
+      "pdf_sha256": "735dd7272577e90dc29ba2980cb1a0d926668177631ae26a345bca81344283db",
+      "eml_file": "gen_009_do-26-7803.eml",
+      "attachment_name": "Invoice_DO_26_7803.pdf",
+      "message_id": "<3d6f6280-b8ce-4ed6-b964-94449813ac77@doylewheelset.example>",
+      "received": "2026-11-01T15:35:00",
+      "source_po": "GEN-PO-0035",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Doyle Wheelset Foundry",
+        "invoice_number": "DO-26-7803",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0035",
+        "currency": "CAD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "8349.23",
+        "tax": "1085.40",
+        "total": "9434.63",
+        "line_items": [
+          {
+            "part_no": "WHL-6037",
+            "description": "Journal box",
+            "qty": 19,
+            "unit_price": "367.85",
+            "line_total": "6989.15"
+          },
+          {
+            "part_no": "WHL-6044",
+            "description": "Truck bolster spring",
+            "qty": 24,
+            "unit_price": "56.67",
+            "line_total": "1360.08"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-010",
+      "split": "dev",
+      "scenario": "price_above_po",
+      "underlying_scenario": null,
+      "expected_outcome": "ANOMALY_PRICE",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_010_inv-32575.pdf",
+      "pdf_sha256": "f6aab1605a445f441aedc43bc09f79ab6230127cb4cf329ab1139539b1c30a25",
+      "eml_file": "gen_010_inv-32575.eml",
+      "attachment_name": "Invoice_INV_32575.pdf",
+      "message_id": "<5f518613-0515-4837-9750-836c032d9362@hillbearings.example>",
+      "received": "2026-11-01T17:03:00",
+      "source_po": "GEN-PO-0038",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": {
+        "type": "price_above_po",
+        "line_no": 1,
+        "part_no": "BRG-3318",
+        "po_unit_price": "20.03",
+        "invoice_unit_price": "21.12",
+        "pct_over": "5.44"
+      },
+      "fields": {
+        "vendor_name": "Hill Precision Bearings",
+        "invoice_number": "INV-32575",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0038",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "6052.25",
+        "tax": "786.79",
+        "total": "6839.04",
+        "line_items": [
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 80,
+            "unit_price": "21.12",
+            "line_total": "1689.60"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 51,
+            "unit_price": "18.99",
+            "line_total": "968.49"
+          },
+          {
+            "part_no": "BRG-3333",
+            "description": "Bearing wear sleeve",
+            "qty": 58,
+            "unit_price": "58.52",
+            "line_total": "3394.16"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-011",
+      "split": "dev",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-22",
+      "scanned": false,
+      "pdf_file": "gen_011_31243.pdf",
+      "pdf_sha256": "6dbc931ff90dc6c73135715939407139373621a49a331d38440478a00e9a1aec",
+      "eml_file": "gen_011_31243.eml",
+      "attachment_name": "Invoice_31243.pdf",
+      "message_id": "<14462cf4-3080-4172-9968-d036c87b018b@santossafetygear.example>",
+      "received": "2026-11-01T17:11:00",
+      "source_po": "GEN-PO-0047",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Santos Safety Supply",
+        "invoice_number": "31243",
+        "invoice_date": "2026-10-31",
+        "po_number": "GEN-PO-0047",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "80463.74",
+        "tax": "10460.29",
+        "total": "90924.03",
+        "line_items": [
+          {
+            "part_no": "SFT-9001",
+            "description": "Hi-vis vest, class 3",
+            "qty": 245,
+            "unit_price": "25.37",
+            "line_total": "6215.65"
+          },
+          {
+            "part_no": "SFT-9005",
+            "description": "Hard hat",
+            "qty": 54,
+            "unit_price": "32.91",
+            "line_total": "1777.14"
+          },
+          {
+            "part_no": "SFT-9010",
+            "description": "Safety glasses",
+            "qty": 260,
+            "unit_price": "8.91",
+            "line_total": "2316.60"
+          },
+          {
+            "part_no": "SFT-9014",
+            "description": "Steel-toe boots",
+            "qty": 246,
+            "unit_price": "151.70",
+            "line_total": "37318.20"
+          },
+          {
+            "part_no": "SFT-9020",
+            "description": "Hearing protection earmuffs",
+            "qty": 175,
+            "unit_price": "27.61",
+            "line_total": "4831.75"
+          },
+          {
+            "part_no": "SFT-9026",
+            "description": "Cut-resistant gloves",
+            "qty": 160,
+            "unit_price": "16.74",
+            "line_total": "2678.40"
+          },
+          {
+            "part_no": "SFT-9033",
+            "description": "Fall arrest harness",
+            "qty": 48,
+            "unit_price": "187.75",
+            "line_total": "9012.00"
+          },
+          {
+            "part_no": "SFT-9040",
+            "description": "Lockout/tagout kit",
+            "qty": 200,
+            "unit_price": "81.57",
+            "line_total": "16314.00"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-012",
+      "split": "eval",
+      "scenario": "price_above_po",
+      "underlying_scenario": null,
+      "expected_outcome": "ANOMALY_PRICE",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_012_29439.pdf",
+      "pdf_sha256": "a30c66d76a670b4132e020cbadd18e9c0df1ec710070065f7adc9ee84b2cf2c1",
+      "eml_file": "gen_012_29439.eml",
+      "attachment_name": "Invoice_29439.pdf",
+      "message_id": "<23bfeab2-9e3c-4a94-95af-77514facf305@robinsonbrakeparts.example>",
+      "received": "2026-11-01T17:27:00",
+      "source_po": "GEN-PO-0001",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": {
+        "type": "price_above_po",
+        "line_no": 4,
+        "part_no": "BRK-4431",
+        "po_unit_price": "450.94",
+        "invoice_unit_price": "481.24",
+        "pct_over": "6.72"
+      },
+      "fields": {
+        "vendor_name": "Robinson Brake Products",
+        "invoice_number": "29439",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0001",
+        "currency": "CAD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "123225.24",
+        "tax": "16019.28",
+        "total": "139244.52",
+        "line_items": [
+          {
+            "part_no": "BRK-4410",
+            "description": "Composition brake shoe, high-friction",
+            "qty": 26,
+            "unit_price": "38.06",
+            "line_total": "989.56"
+          },
+          {
+            "part_no": "BRK-4412",
+            "description": "Composition brake shoe, low-friction",
+            "qty": 31,
+            "unit_price": "38.60",
+            "line_total": "1196.60"
+          },
+          {
+            "part_no": "BRK-4420",
+            "description": "Brake head, cast",
+            "qty": 82,
+            "unit_price": "92.93",
+            "line_total": "7620.26"
+          },
+          {
+            "part_no": "BRK-4431",
+            "description": "Brake beam, truck-mounted",
+            "qty": 141,
+            "unit_price": "481.24",
+            "line_total": "67854.84"
+          },
+          {
+            "part_no": "BRK-4440",
+            "description": "Brake hanger assembly",
+            "qty": 176,
+            "unit_price": "68.30",
+            "line_total": "12020.80"
+          },
+          {
+            "part_no": "BRK-4452",
+            "description": "Slack adjuster",
+            "qty": 38,
+            "unit_price": "311.73",
+            "line_total": "11845.74"
+          },
+          {
+            "part_no": "BRK-4460",
+            "description": "Brake cylinder piston",
+            "qty": 136,
+            "unit_price": "159.54",
+            "line_total": "21697.44"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-013",
+      "split": "eval",
+      "scenario": "clean",
+      "underlying_scenario": null,
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_013_39766.pdf",
+      "pdf_sha256": "af8cdff851bd247092af06bb18f6ddb24d6b870bcdcf71a80679d91bf21dea96",
+      "eml_file": "gen_013_39766.eml",
+      "attachment_name": "Invoice_39766.pdf",
+      "message_id": "<4bb632fa-26d2-4077-98a2-cf8b162a0cf7@gardnervalves.example>",
+      "received": "2026-11-01T17:56:00",
+      "source_po": "GEN-PO-0002",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Gardner Valve & Fittings",
+        "invoice_number": "39766",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0002",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "13361.89",
+        "tax": "1737.05",
+        "total": "15098.94",
+        "line_items": [
+          {
+            "part_no": "VLV-5200",
+            "description": "Angle cock 1.25in",
+            "qty": 54,
+            "unit_price": "109.82",
+            "line_total": "5930.28"
+          },
+          {
+            "part_no": "VLV-5204",
+            "description": "Retainer valve",
+            "qty": 32,
+            "unit_price": "73.56",
+            "line_total": "2353.92"
+          },
+          {
+            "part_no": "VLV-5215",
+            "description": "Relief valve",
+            "qty": 19,
+            "unit_price": "93.07",
+            "line_total": "1768.33"
+          },
+          {
+            "part_no": "VLV-5221",
+            "description": "Check valve",
+            "qty": 16,
+            "unit_price": "54.41",
+            "line_total": "870.56"
+          },
+          {
+            "part_no": "VLV-5226",
+            "description": "Drain valve",
+            "qty": 56,
+            "unit_price": "43.55",
+            "line_total": "2438.80"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-014",
+      "split": "eval",
+      "scenario": "clean",
+      "underlying_scenario": null,
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_014_he-26-0286.pdf",
+      "pdf_sha256": "5682844599e7ca3ca65f70ccd3fcd297e2da2f0c5af965e33d40fcbc5136b4a8",
+      "eml_file": "gen_014_he-26-0286.eml",
+      "attachment_name": "Invoice_HE_26_0286.pdf",
+      "message_id": "<5e314487-721b-43f1-ab6c-ec1e412efc23@hendersonvalves.example>",
+      "received": "2026-11-02T07:54:00",
+      "source_po": "GEN-PO-0007",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Henderson Valve Works",
+        "invoice_number": "HE-26-0286",
+        "invoice_date": "2026-10-31",
+        "po_number": "GEN-PO-0007",
+        "currency": "USD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "19936.14",
+        "tax": "0.00",
+        "total": "19936.14",
+        "line_items": [
+          {
+            "part_no": "VLV-5200",
+            "description": "Angle cock 1.25in",
+            "qty": 19,
+            "unit_price": "90.93",
+            "line_total": "1727.67"
+          },
+          {
+            "part_no": "VLV-5204",
+            "description": "Retainer valve",
+            "qty": 46,
+            "unit_price": "61.22",
+            "line_total": "2816.12"
+          },
+          {
+            "part_no": "VLV-5210",
+            "description": "Control valve, freight",
+            "qty": 9,
+            "unit_price": "496.64",
+            "line_total": "4469.76"
+          },
+          {
+            "part_no": "VLV-5215",
+            "description": "Relief valve",
+            "qty": 54,
+            "unit_price": "75.54",
+            "line_total": "4079.16"
+          },
+          {
+            "part_no": "VLV-5221",
+            "description": "Check valve",
+            "qty": 46,
+            "unit_price": "44.45",
+            "line_total": "2044.70"
+          },
+          {
+            "part_no": "VLV-5226",
+            "description": "Drain valve",
+            "qty": 7,
+            "unit_price": "30.71",
+            "line_total": "214.97"
+          },
+          {
+            "part_no": "VLV-5230",
+            "description": "Cut-out cock",
+            "qty": 53,
+            "unit_price": "65.52",
+            "line_total": "3472.56"
+          },
+          {
+            "part_no": "VLV-5238",
+            "description": "Pressure regulating valve",
+            "qty": 6,
+            "unit_price": "185.20",
+            "line_total": "1111.20"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-015",
+      "split": "dev",
+      "scenario": "reissue",
+      "underlying_scenario": null,
+      "expected_outcome": "EXCEPTION_REISSUE",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_015_29423.pdf",
+      "pdf_sha256": "ab2034c5ff868a2b4557e44f4ef549d7099163aadde3aa475994f80b2b2cdd60",
+      "eml_file": "gen_015_29423.eml",
+      "attachment_name": "Invoice_29423.pdf",
+      "message_id": "<e0e73a9e-6b67-4e0a-a212-aca9ff1d361d@robinsonbrakeparts.example>",
+      "received": "2026-11-02T08:35:00",
+      "source_po": "GEN-PO-0023",
+      "duplicate_of": null,
+      "reissue_of": "INV-007",
+      "reissue_change": "date",
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Robinson Brake Products",
+        "invoice_number": "29423",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0023",
+        "currency": "CAD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "80123.69",
+        "tax": "10416.08",
+        "total": "90539.77",
+        "line_items": [
+          {
+            "part_no": "BRK-4410",
+            "description": "Composition brake shoe, high-friction",
+            "qty": 170,
+            "unit_price": "38.06",
+            "line_total": "6470.20"
+          },
+          {
+            "part_no": "BRK-4420",
+            "description": "Brake head, cast",
+            "qty": 168,
+            "unit_price": "92.93",
+            "line_total": "15612.24"
+          },
+          {
+            "part_no": "BRK-4440",
+            "description": "Brake hanger assembly",
+            "qty": 188,
+            "unit_price": "68.30",
+            "line_total": "12840.40"
+          },
+          {
+            "part_no": "BRK-4452",
+            "description": "Slack adjuster",
+            "qty": 145,
+            "unit_price": "311.73",
+            "line_total": "45200.85"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-016",
+      "split": "eval",
+      "scenario": "scanned",
+      "underlying_scenario": "no_po",
+      "expected_outcome": "EXCEPTION_NO_PO",
+      "ready_day": null,
+      "scanned": true,
+      "pdf_file": "gen_016_29481.pdf",
+      "pdf_sha256": "6e6a2388aca1f6b6fd7853684bfe2de0ef9dc0e29cea2ac96a553d307cee8f1c",
+      "eml_file": "gen_016_29481.eml",
+      "attachment_name": "Invoice_29481.pdf",
+      "message_id": "<783db213-ab51-463c-b9a1-da61713317ad@robinsonbrakeparts.example>",
+      "received": "2026-11-02T09:00:00",
+      "source_po": "GEN-PO-0063",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Robinson Brake Products",
+        "invoice_number": "29481",
+        "invoice_date": "2026-10-31",
+        "po_number": null,
+        "currency": "CAD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "23229.44",
+        "tax": "3019.83",
+        "total": "26249.27",
+        "line_items": [
+          {
+            "part_no": "BRK-4410",
+            "description": "Composition brake shoe, high-friction",
+            "qty": 130,
+            "unit_price": "38.06",
+            "line_total": "4947.80"
+          },
+          {
+            "part_no": "BRK-4412",
+            "description": "Composition brake shoe, low-friction",
+            "qty": 174,
+            "unit_price": "38.60",
+            "line_total": "6716.40"
+          },
+          {
+            "part_no": "BRK-4425",
+            "description": "Brake shoe key",
+            "qty": 66,
+            "unit_price": "10.69",
+            "line_total": "705.54"
+          },
+          {
+            "part_no": "BRK-4440",
+            "description": "Brake hanger assembly",
+            "qty": 159,
+            "unit_price": "68.30",
+            "line_total": "10859.70"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-017",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-27",
+      "scanned": false,
+      "pdf_file": "gen_017_he-26-0301.pdf",
+      "pdf_sha256": "214fe5c1e8523379e22af2dc9fb30e38a4357da48aa8104c9f5a5efd5b9ee85b",
+      "eml_file": "gen_017_he-26-0301.eml",
+      "attachment_name": "Invoice_HE_26_0301.pdf",
+      "message_id": "<d6d87bab-1273-4da8-a8ed-dadfd934b536@hendersonvalves.example>",
+      "received": "2026-11-02T09:21:00",
+      "source_po": "GEN-PO-0028",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Henderson Valve Works",
+        "invoice_number": "HE-26-0301",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0028",
+        "currency": "USD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "28427.41",
+        "tax": "0.00",
+        "total": "28427.41",
+        "line_items": [
+          {
+            "part_no": "VLV-5200",
+            "description": "Angle cock 1.25in",
+            "qty": 27,
+            "unit_price": "90.93",
+            "line_total": "2455.11"
+          },
+          {
+            "part_no": "VLV-5204",
+            "description": "Retainer valve",
+            "qty": 42,
+            "unit_price": "61.22",
+            "line_total": "2571.24"
+          },
+          {
+            "part_no": "VLV-5210",
+            "description": "Control valve, freight",
+            "qty": 24,
+            "unit_price": "496.64",
+            "line_total": "11919.36"
+          },
+          {
+            "part_no": "VLV-5215",
+            "description": "Relief valve",
+            "qty": 45,
+            "unit_price": "75.54",
+            "line_total": "3399.30"
+          },
+          {
+            "part_no": "VLV-5226",
+            "description": "Drain valve",
+            "qty": 32,
+            "unit_price": "30.71",
+            "line_total": "982.72"
+          },
+          {
+            "part_no": "VLV-5230",
+            "description": "Cut-out cock",
+            "qty": 49,
+            "unit_price": "65.52",
+            "line_total": "3210.48"
+          },
+          {
+            "part_no": "VLV-5238",
+            "description": "Pressure regulating valve",
+            "qty": 21,
+            "unit_price": "185.20",
+            "line_total": "3889.20"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-018",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-28",
+      "scanned": false,
+      "pdf_file": "gen_018_sh-26-8441.pdf",
+      "pdf_sha256": "2b07dd453dbe14fbc899020272e27a0a2d0cbc63e01004aee4e289e6b3ebdb32",
+      "eml_file": "gen_018_sh-26-8441.eml",
+      "attachment_name": "Invoice_SH_26_8441.pdf",
+      "message_id": "<58265978-5034-4bd6-9940-6662aee64e47@shaffercouplers.example>",
+      "received": "2026-11-02T09:22:00",
+      "source_po": "GEN-PO-0016",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Shaffer Coupler Works",
+        "invoice_number": "SH-26-8441",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0016",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "26951.07",
+        "tax": "3503.64",
+        "total": "30454.71",
+        "line_items": [
+          {
+            "part_no": "CPL-7100",
+            "description": "Type E coupler body",
+            "qty": 7,
+            "unit_price": "1885.16",
+            "line_total": "13196.12"
+          },
+          {
+            "part_no": "CPL-7121",
+            "description": "Draft gear, cushioning",
+            "qty": 9,
+            "unit_price": "1487.72",
+            "line_total": "13389.48"
+          },
+          {
+            "part_no": "CPL-7130",
+            "description": "Coupler pin",
+            "qty": 7,
+            "unit_price": "52.21",
+            "line_total": "365.47"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-019",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-25",
+      "scanned": false,
+      "pdf_file": "gen_019_31280.pdf",
+      "pdf_sha256": "54334330d2d156e72ca1ccd74d9e133b40184fc2d74362ffb7da2d23c7810976",
+      "eml_file": "gen_019_31280.eml",
+      "attachment_name": "Invoice_31280.pdf",
+      "message_id": "<175e2664-04bd-4036-a5f9-4d4e4b925b72@santossafetygear.example>",
+      "received": "2026-11-02T12:07:00",
+      "source_po": "GEN-PO-0033",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Santos Safety Supply",
+        "invoice_number": "31280",
+        "invoice_date": "2026-11-02",
+        "po_number": "GEN-PO-0033",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "26824.19",
+        "tax": "3487.14",
+        "total": "30311.33",
+        "line_items": [
+          {
+            "part_no": "SFT-9001",
+            "description": "Hi-vis vest, class 3",
+            "qty": 208,
+            "unit_price": "25.37",
+            "line_total": "5276.96"
+          },
+          {
+            "part_no": "SFT-9026",
+            "description": "Cut-resistant gloves",
+            "qty": 298,
+            "unit_price": "16.74",
+            "line_total": "4988.52"
+          },
+          {
+            "part_no": "SFT-9040",
+            "description": "Lockout/tagout kit",
+            "qty": 203,
+            "unit_price": "81.57",
+            "line_total": "16558.71"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-020",
+      "split": "eval",
+      "scenario": "clean",
+      "underlying_scenario": null,
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_020_20002.pdf",
+      "pdf_sha256": "d049aa896aebbd1504b54c86c6861df372980a5f47b3227d9285f3e117d3fe04",
+      "eml_file": "gen_020_20002.eml",
+      "attachment_name": "Invoice_20002.pdf",
+      "message_id": "<6c2a9a6b-affe-47b2-beb2-218bbf0f158a@smithsafetygear.example>",
+      "received": "2026-11-02T12:50:00",
+      "source_po": "GEN-PO-0031",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Smith Safety Supply",
+        "invoice_number": "20002",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0031",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "43972.47",
+        "tax": "5716.42",
+        "total": "49688.89",
+        "line_items": [
+          {
+            "part_no": "SFT-9005",
+            "description": "Hard hat",
+            "qty": 174,
+            "unit_price": "28.25",
+            "line_total": "4915.50"
+          },
+          {
+            "part_no": "SFT-9014",
+            "description": "Steel-toe boots",
+            "qty": 229,
+            "unit_price": "165.09",
+            "line_total": "37805.61"
+          },
+          {
+            "part_no": "SFT-9026",
+            "description": "Cut-resistant gloves",
+            "qty": 79,
+            "unit_price": "15.84",
+            "line_total": "1251.36"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-021",
+      "split": "eval",
+      "scenario": "clean",
+      "underlying_scenario": null,
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_021_14101.pdf",
+      "pdf_sha256": "e4011845cefe838436454a34219448f3b1c5e6b4452ec23c5683f3710dc8def8",
+      "eml_file": "gen_021_14101.eml",
+      "attachment_name": "Invoice_14101.pdf",
+      "message_id": "<a270de02-d9c8-4b99-8939-48cdc5c0a1ed@johnsoncoatings.example>",
+      "received": "2026-11-02T13:54:00",
+      "source_po": "GEN-PO-0072",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Johnson Industrial Coatings",
+        "invoice_number": "14101",
+        "invoice_date": "2026-11-02",
+        "po_number": "GEN-PO-0072",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "59078.32",
+        "tax": "7680.18",
+        "total": "66758.50",
+        "line_items": [
+          {
+            "part_no": "PNT-8100",
+            "description": "Industrial enamel, black 20L",
+            "qty": 74,
+            "unit_price": "144.81",
+            "line_total": "10715.94"
+          },
+          {
+            "part_no": "PNT-8104",
+            "description": "Industrial enamel, red 20L",
+            "qty": 92,
+            "unit_price": "147.66",
+            "line_total": "13584.72"
+          },
+          {
+            "part_no": "PNT-8110",
+            "description": "Zinc-rich primer 20L",
+            "qty": 31,
+            "unit_price": "173.41",
+            "line_total": "5375.71"
+          },
+          {
+            "part_no": "PNT-8115",
+            "description": "Reflective stripe tape roll",
+            "qty": 85,
+            "unit_price": "93.37",
+            "line_total": "7936.45"
+          },
+          {
+            "part_no": "PNT-8120",
+            "description": "Thinner 20L",
+            "qty": 84,
+            "unit_price": "81.18",
+            "line_total": "6819.12"
+          },
+          {
+            "part_no": "PNT-8126",
+            "description": "Stencil kit, reporting marks",
+            "qty": 29,
+            "unit_price": "127.36",
+            "line_total": "3693.44"
+          },
+          {
+            "part_no": "PNT-8131",
+            "description": "Epoxy topcoat 20L",
+            "qty": 31,
+            "unit_price": "203.80",
+            "line_total": "6317.80"
+          },
+          {
+            "part_no": "PNT-8138",
+            "description": "Rust converter 4L",
+            "qty": 94,
+            "unit_price": "49.31",
+            "line_total": "4635.14"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-022",
+      "split": "eval",
+      "scenario": "clean",
+      "underlying_scenario": null,
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_022_inv-11148.pdf",
+      "pdf_sha256": "d9c8ee5fb965e4b793e7765a47af03d0f3d7eb70344647d050b1e5f5efad5cd9",
+      "eml_file": "gen_022_inv-11148.eml",
+      "attachment_name": "Invoice_INV_11148.pdf",
+      "message_id": "<4024b008-9fed-4681-a709-70b7796aa7ef@bernardcoatings.example>",
+      "received": "2026-11-02T16:15:00",
+      "source_po": "GEN-PO-0057",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Bernard Industrial Coatings",
+        "invoice_number": "INV-11148",
+        "invoice_date": "2026-11-02",
+        "po_number": "GEN-PO-0057",
+        "currency": "CAD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "48711.94",
+        "tax": "6332.55",
+        "total": "55044.49",
+        "line_items": [
+          {
+            "part_no": "PNT-8100",
+            "description": "Industrial enamel, black 20L",
+            "qty": 37,
+            "unit_price": "146.77",
+            "line_total": "5430.49"
+          },
+          {
+            "part_no": "PNT-8104",
+            "description": "Industrial enamel, red 20L",
+            "qty": 29,
+            "unit_price": "149.62",
+            "line_total": "4338.98"
+          },
+          {
+            "part_no": "PNT-8115",
+            "description": "Reflective stripe tape roll",
+            "qty": 80,
+            "unit_price": "88.39",
+            "line_total": "7071.20"
+          },
+          {
+            "part_no": "PNT-8120",
+            "description": "Thinner 20L",
+            "qty": 87,
+            "unit_price": "79.60",
+            "line_total": "6925.20"
+          },
+          {
+            "part_no": "PNT-8126",
+            "description": "Stencil kit, reporting marks",
+            "qty": 77,
+            "unit_price": "114.35",
+            "line_total": "8804.95"
+          },
+          {
+            "part_no": "PNT-8131",
+            "description": "Epoxy topcoat 20L",
+            "qty": 64,
+            "unit_price": "231.76",
+            "line_total": "14832.64"
+          },
+          {
+            "part_no": "PNT-8138",
+            "description": "Rust converter 4L",
+            "qty": 24,
+            "unit_price": "54.52",
+            "line_total": "1308.48"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-023",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-12",
+      "scanned": false,
+      "pdf_file": "gen_023_jo-26-1365.pdf",
+      "pdf_sha256": "093306a533e04876a12412027fe0f295afe27eec095777ef40bea9041d47ee9e",
+      "eml_file": "gen_023_jo-26-1365.eml",
+      "attachment_name": "Invoice_JO_26_1365.pdf",
+      "message_id": "<d3028779-e6ec-4463-a58d-d82612abafdc@johnsonbrakeparts.example>",
+      "received": "2026-11-02T17:14:00",
+      "source_po": "GEN-PO-0060",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Johnson Braking Supply",
+        "invoice_number": "JO-26-1365",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0060",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "150730.20",
+        "tax": "19594.93",
+        "total": "170325.13",
+        "line_items": [
+          {
+            "part_no": "BRK-4410",
+            "description": "Composition brake shoe, high-friction",
+            "qty": 37,
+            "unit_price": "38.13",
+            "line_total": "1410.81"
+          },
+          {
+            "part_no": "BRK-4412",
+            "description": "Composition brake shoe, low-friction",
+            "qty": 108,
+            "unit_price": "34.18",
+            "line_total": "3691.44"
+          },
+          {
+            "part_no": "BRK-4420",
+            "description": "Brake head, cast",
+            "qty": 81,
+            "unit_price": "83.98",
+            "line_total": "6802.38"
+          },
+          {
+            "part_no": "BRK-4425",
+            "description": "Brake shoe key",
+            "qty": 188,
+            "unit_price": "10.62",
+            "line_total": "1996.56"
+          },
+          {
+            "part_no": "BRK-4431",
+            "description": "Brake beam, truck-mounted",
+            "qty": 180,
+            "unit_price": "414.42",
+            "line_total": "74595.60"
+          },
+          {
+            "part_no": "BRK-4440",
+            "description": "Brake hanger assembly",
+            "qty": 46,
+            "unit_price": "65.13",
+            "line_total": "2995.98"
+          },
+          {
+            "part_no": "BRK-4452",
+            "description": "Slack adjuster",
+            "qty": 168,
+            "unit_price": "256.91",
+            "line_total": "43160.88"
+          },
+          {
+            "part_no": "BRK-4460",
+            "description": "Brake cylinder piston",
+            "qty": 105,
+            "unit_price": "153.11",
+            "line_total": "16076.55"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-024",
+      "split": "eval",
+      "scenario": "price_above_po",
+      "underlying_scenario": null,
+      "expected_outcome": "ANOMALY_PRICE",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_024_10114.pdf",
+      "pdf_sha256": "35448c653f9146607669214026d6a3dae84cec8bc11eff1928e00e9217fbff26",
+      "eml_file": "gen_024_10114.eml",
+      "attachment_name": "Invoice_10114.pdf",
+      "message_id": "<d089a202-3550-48b6-a014-7e5f7b90e5ba@robinsonbearings.example>",
+      "received": "2026-11-03T07:21:00",
+      "source_po": "GEN-PO-0027",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": {
+        "type": "price_above_po",
+        "line_no": 7,
+        "part_no": "BRG-3327",
+        "po_unit_price": "28.32",
+        "invoice_unit_price": "29.72",
+        "pct_over": "4.94"
+      },
+      "fields": {
+        "vendor_name": "Robinson Bearing Co",
+        "invoice_number": "10114",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0027",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "30579.10",
+        "tax": "3975.28",
+        "total": "34554.38",
+        "line_items": [
+          {
+            "part_no": "BRG-3301",
+            "description": "Tapered roller bearing, class K",
+            "qty": 33,
+            "unit_price": "324.38",
+            "line_total": "10704.54"
+          },
+          {
+            "part_no": "BRG-3305",
+            "description": "Tapered roller bearing, class F",
+            "qty": 31,
+            "unit_price": "292.38",
+            "line_total": "9063.78"
+          },
+          {
+            "part_no": "BRG-3310",
+            "description": "Bearing adapter",
+            "qty": 32,
+            "unit_price": "140.24",
+            "line_total": "4487.68"
+          },
+          {
+            "part_no": "BRG-3314",
+            "description": "Bearing seal, rear",
+            "qty": 20,
+            "unit_price": "34.22",
+            "line_total": "684.40"
+          },
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 58,
+            "unit_price": "19.43",
+            "line_total": "1126.94"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 40,
+            "unit_price": "18.06",
+            "line_total": "722.40"
+          },
+          {
+            "part_no": "BRG-3327",
+            "description": "Lubricant cartridge",
+            "qty": 73,
+            "unit_price": "29.72",
+            "line_total": "2169.56"
+          },
+          {
+            "part_no": "BRG-3333",
+            "description": "Bearing wear sleeve",
+            "qty": 28,
+            "unit_price": "57.85",
+            "line_total": "1619.80"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-025",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-15",
+      "scanned": false,
+      "pdf_file": "gen_025_inv-11149.pdf",
+      "pdf_sha256": "4b7a944442f9c7b09a52e59657821c82596a457fcfc6f93284ab6e02cb690bca",
+      "eml_file": "gen_025_inv-11149.eml",
+      "attachment_name": "Invoice_INV_11149.pdf",
+      "message_id": "<2a74c1d7-5462-4a07-8cba-e541a994f740@bernardcoatings.example>",
+      "received": "2026-11-03T07:48:00",
+      "source_po": "GEN-PO-0068",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Bernard Industrial Coatings",
+        "invoice_number": "INV-11149",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0068",
+        "currency": "CAD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "33516.32",
+        "tax": "4357.12",
+        "total": "37873.44",
+        "line_items": [
+          {
+            "part_no": "PNT-8104",
+            "description": "Industrial enamel, red 20L",
+            "qty": 98,
+            "unit_price": "149.62",
+            "line_total": "14662.76"
+          },
+          {
+            "part_no": "PNT-8110",
+            "description": "Zinc-rich primer 20L",
+            "qty": 72,
+            "unit_price": "204.23",
+            "line_total": "14704.56"
+          },
+          {
+            "part_no": "PNT-8120",
+            "description": "Thinner 20L",
+            "qty": 35,
+            "unit_price": "79.60",
+            "line_total": "2786.00"
+          },
+          {
+            "part_no": "PNT-8138",
+            "description": "Rust converter 4L",
+            "qty": 25,
+            "unit_price": "54.52",
+            "line_total": "1363.00"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-026",
+      "split": "eval",
+      "scenario": "clean",
+      "underlying_scenario": null,
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_026_39768.pdf",
+      "pdf_sha256": "971a8b5fea4d79fcf06ac89642187bbab80a57ed26f17eb033333d816b777bec",
+      "eml_file": "gen_026_39768.eml",
+      "attachment_name": "Invoice_39768.pdf",
+      "message_id": "<f70a043a-5428-4d44-9866-d9d3c2e6e3fc@gardnervalves.example>",
+      "received": "2026-11-03T10:56:00",
+      "source_po": "GEN-PO-0022",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Gardner Valve & Fittings",
+        "invoice_number": "39768",
+        "invoice_date": "2026-11-02",
+        "po_number": "GEN-PO-0022",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "14558.05",
+        "tax": "1892.55",
+        "total": "16450.60",
+        "line_items": [
+          {
+            "part_no": "VLV-5204",
+            "description": "Retainer valve",
+            "qty": 17,
+            "unit_price": "73.56",
+            "line_total": "1250.52"
+          },
+          {
+            "part_no": "VLV-5215",
+            "description": "Relief valve",
+            "qty": 43,
+            "unit_price": "93.07",
+            "line_total": "4002.01"
+          },
+          {
+            "part_no": "VLV-5221",
+            "description": "Check valve",
+            "qty": 37,
+            "unit_price": "54.41",
+            "line_total": "2013.17"
+          },
+          {
+            "part_no": "VLV-5230",
+            "description": "Cut-out cock",
+            "qty": 52,
+            "unit_price": "81.70",
+            "line_total": "4248.40"
+          },
+          {
+            "part_no": "VLV-5238",
+            "description": "Pressure regulating valve",
+            "qty": 13,
+            "unit_price": "234.15",
+            "line_total": "3043.95"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-027",
+      "split": "eval",
+      "scenario": "reissue",
+      "underlying_scenario": null,
+      "expected_outcome": "EXCEPTION_REISSUE",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_027_he-26-0286.pdf",
+      "pdf_sha256": "1e6186c65aee34b019beddc1197d8ff9fc4c51bf0e4bc65f3b6a99ae1ce6d297",
+      "eml_file": "gen_027_he-26-0286.eml",
+      "attachment_name": "Invoice_HE_26_0286.pdf",
+      "message_id": "<97bd6c20-b9c1-4c88-8bde-69f177090a28@hendersonvalves.example>",
+      "received": "2026-11-03T11:05:00",
+      "source_po": "GEN-PO-0007",
+      "duplicate_of": null,
+      "reissue_of": "INV-014",
+      "reissue_change": "layout",
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Henderson Valve Works",
+        "invoice_number": "HE-26-0286",
+        "invoice_date": "2026-10-31",
+        "po_number": "GEN-PO-0007",
+        "currency": "USD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "19936.14",
+        "tax": "0.00",
+        "total": "19936.14",
+        "line_items": [
+          {
+            "part_no": "VLV-5200",
+            "description": "Angle cock 1.25in",
+            "qty": 19,
+            "unit_price": "90.93",
+            "line_total": "1727.67"
+          },
+          {
+            "part_no": "VLV-5204",
+            "description": "Retainer valve",
+            "qty": 46,
+            "unit_price": "61.22",
+            "line_total": "2816.12"
+          },
+          {
+            "part_no": "VLV-5210",
+            "description": "Control valve, freight",
+            "qty": 9,
+            "unit_price": "496.64",
+            "line_total": "4469.76"
+          },
+          {
+            "part_no": "VLV-5215",
+            "description": "Relief valve",
+            "qty": 54,
+            "unit_price": "75.54",
+            "line_total": "4079.16"
+          },
+          {
+            "part_no": "VLV-5221",
+            "description": "Check valve",
+            "qty": 46,
+            "unit_price": "44.45",
+            "line_total": "2044.70"
+          },
+          {
+            "part_no": "VLV-5226",
+            "description": "Drain valve",
+            "qty": 7,
+            "unit_price": "30.71",
+            "line_total": "214.97"
+          },
+          {
+            "part_no": "VLV-5230",
+            "description": "Cut-out cock",
+            "qty": 53,
+            "unit_price": "65.52",
+            "line_total": "3472.56"
+          },
+          {
+            "part_no": "VLV-5238",
+            "description": "Pressure regulating valve",
+            "qty": 6,
+            "unit_price": "185.20",
+            "line_total": "1111.20"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-028",
+      "split": "eval",
+      "scenario": "clean",
+      "underlying_scenario": null,
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_028_10047.pdf",
+      "pdf_sha256": "5c3be15ee7d1564d705cb0bc4ab7a46bdac5268bea9e7e87d0d67a989f5a73a0",
+      "eml_file": "gen_028_10047.eml",
+      "attachment_name": "Invoice_10047.pdf",
+      "message_id": "<8fc96daf-a38e-4a01-a7db-9766e084c540@robinsonbearings.example>",
+      "received": "2026-11-03T11:14:00",
+      "source_po": "GEN-PO-0056",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Robinson Bearing Co",
+        "invoice_number": "10047",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0056",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "1270.32",
+        "tax": "165.14",
+        "total": "1435.46",
+        "line_items": [
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 28,
+            "unit_price": "18.06",
+            "line_total": "505.68"
+          },
+          {
+            "part_no": "BRG-3327",
+            "description": "Lubricant cartridge",
+            "qty": 27,
+            "unit_price": "28.32",
+            "line_total": "764.64"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-029",
+      "split": "eval",
+      "scenario": "partial_never",
+      "underlying_scenario": null,
+      "expected_outcome": "STAYS_WAITING",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_029_16470.pdf",
+      "pdf_sha256": "b045d686569dcbdac3a116c736adeef3f3c2c89f59346281ab61e61281ea1c9c",
+      "eml_file": "gen_029_16470.eml",
+      "attachment_name": "Invoice_16470.pdf",
+      "message_id": "<ee884f3c-48c6-44bb-ac5d-cff151dce0e4@petersonbrakeparts.example>",
+      "received": "2026-11-03T11:48:00",
+      "source_po": "GEN-PO-0069",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Peterson Friction Systems",
+        "invoice_number": "16470",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0069",
+        "currency": "CAD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "101921.10",
+        "tax": "13249.74",
+        "total": "115170.84",
+        "line_items": [
+          {
+            "part_no": "BRK-4410",
+            "description": "Composition brake shoe, high-friction",
+            "qty": 55,
+            "unit_price": "37.08",
+            "line_total": "2039.40"
+          },
+          {
+            "part_no": "BRK-4412",
+            "description": "Composition brake shoe, low-friction",
+            "qty": 80,
+            "unit_price": "37.81",
+            "line_total": "3024.80"
+          },
+          {
+            "part_no": "BRK-4420",
+            "description": "Brake head, cast",
+            "qty": 146,
+            "unit_price": "84.13",
+            "line_total": "12282.98"
+          },
+          {
+            "part_no": "BRK-4431",
+            "description": "Brake beam, truck-mounted",
+            "qty": 26,
+            "unit_price": "450.87",
+            "line_total": "11722.62"
+          },
+          {
+            "part_no": "BRK-4440",
+            "description": "Brake hanger assembly",
+            "qty": 112,
+            "unit_price": "70.35",
+            "line_total": "7879.20"
+          },
+          {
+            "part_no": "BRK-4452",
+            "description": "Slack adjuster",
+            "qty": 161,
+            "unit_price": "260.68",
+            "line_total": "41969.48"
+          },
+          {
+            "part_no": "BRK-4460",
+            "description": "Brake cylinder piston",
+            "qty": 166,
+            "unit_price": "138.57",
+            "line_total": "23002.62"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-030",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-23",
+      "scanned": false,
+      "pdf_file": "gen_030_mo-26-3639.pdf",
+      "pdf_sha256": "963099a91be3a8784b398947240e225b18db0b7e003b6f96792e9abf4ff697ae",
+      "eml_file": "gen_030_mo-26-3639.eml",
+      "attachment_name": "Invoice_MO_26_3639.pdf",
+      "message_id": "<bc921382-a3a1-48bd-ae22-f52e69a6f173@moorebrakeparts.example>",
+      "received": "2026-11-03T13:05:00",
+      "source_po": "GEN-PO-0040",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Moore Brake Products",
+        "invoice_number": "MO-26-3639",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0040",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "54342.86",
+        "tax": "7064.57",
+        "total": "61407.43",
+        "line_items": [
+          {
+            "part_no": "BRK-4431",
+            "description": "Brake beam, truck-mounted",
+            "qty": 99,
+            "unit_price": "381.94",
+            "line_total": "37812.06"
+          },
+          {
+            "part_no": "BRK-4460",
+            "description": "Brake cylinder piston",
+            "qty": 110,
+            "unit_price": "150.28",
+            "line_total": "16530.80"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-031",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-24",
+      "scanned": false,
+      "pdf_file": "gen_031_29456.pdf",
+      "pdf_sha256": "8c334561225b76440bded75a8394a222a21bbd05e33cb563bff34bbb1002bc05",
+      "eml_file": "gen_031_29456.eml",
+      "attachment_name": "Invoice_29456.pdf",
+      "message_id": "<4d298c13-5b20-46bd-9c47-901b505dd74b@robinsonbrakeparts.example>",
+      "received": "2026-11-03T13:46:00",
+      "source_po": "GEN-PO-0012",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Robinson Brake Products",
+        "invoice_number": "29456",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0012",
+        "currency": "CAD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "40535.38",
+        "tax": "5269.60",
+        "total": "45804.98",
+        "line_items": [
+          {
+            "part_no": "BRK-4412",
+            "description": "Composition brake shoe, low-friction",
+            "qty": 124,
+            "unit_price": "38.60",
+            "line_total": "4786.40"
+          },
+          {
+            "part_no": "BRK-4440",
+            "description": "Brake hanger assembly",
+            "qty": 145,
+            "unit_price": "68.30",
+            "line_total": "9903.50"
+          },
+          {
+            "part_no": "BRK-4460",
+            "description": "Brake cylinder piston",
+            "qty": 162,
+            "unit_price": "159.54",
+            "line_total": "25845.48"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-032",
+      "split": "eval",
+      "scenario": "clean",
+      "underlying_scenario": null,
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_032_28233.pdf",
+      "pdf_sha256": "aa306c2d424c81c9b22805615c3dea360371935dec17906eb5f1387150b685cd",
+      "eml_file": "gen_032_28233.eml",
+      "attachment_name": "Invoice_28233.pdf",
+      "message_id": "<dd7f63ff-1bed-4616-bc1f-9642e1620d88@millerbearings.example>",
+      "received": "2026-11-03T14:47:00",
+      "source_po": "GEN-PO-0067",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Miller Roller Bearings",
+        "invoice_number": "28233",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0067",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "12113.89",
+        "tax": "1574.81",
+        "total": "13688.70",
+        "line_items": [
+          {
+            "part_no": "BRG-3301",
+            "description": "Tapered roller bearing, class K",
+            "qty": 33,
+            "unit_price": "326.65",
+            "line_total": "10779.45"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 73,
+            "unit_price": "18.28",
+            "line_total": "1334.44"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-033",
+      "split": "dev",
+      "scenario": "clean",
+      "underlying_scenario": null,
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_033_28244.pdf",
+      "pdf_sha256": "228e40bbac4afd949ebf830df94ec9b124c046bf5893baebd25e4c188b9a4ed5",
+      "eml_file": "gen_033_28244.eml",
+      "attachment_name": "Invoice_28244.pdf",
+      "message_id": "<dcb3792b-3c4b-4c4b-9785-86e167bf4885@millerbearings.example>",
+      "received": "2026-11-03T15:48:00",
+      "source_po": "GEN-PO-0032",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Miller Roller Bearings",
+        "invoice_number": "28244",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0032",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "12022.54",
+        "tax": "1562.93",
+        "total": "13585.47",
+        "line_items": [
+          {
+            "part_no": "BRG-3310",
+            "description": "Bearing adapter",
+            "qty": 29,
+            "unit_price": "122.71",
+            "line_total": "3558.59"
+          },
+          {
+            "part_no": "BRG-3314",
+            "description": "Bearing seal, rear",
+            "qty": 63,
+            "unit_price": "31.68",
+            "line_total": "1995.84"
+          },
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 22,
+            "unit_price": "18.91",
+            "line_total": "416.02"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 72,
+            "unit_price": "18.28",
+            "line_total": "1316.16"
+          },
+          {
+            "part_no": "BRG-3327",
+            "description": "Lubricant cartridge",
+            "qty": 62,
+            "unit_price": "27.14",
+            "line_total": "1682.68"
+          },
+          {
+            "part_no": "BRG-3333",
+            "description": "Bearing wear sleeve",
+            "qty": 45,
+            "unit_price": "67.85",
+            "line_total": "3053.25"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-034",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-18",
+      "scanned": false,
+      "pdf_file": "gen_034_22394.pdf",
+      "pdf_sha256": "92fa64590eced4ddaf4c87afad993f57be6b2d4873af49ca4221f733d6bdebc7",
+      "eml_file": "gen_034_22394.eml",
+      "attachment_name": "Invoice_22394.pdf",
+      "message_id": "<e983c6d9-9c45-4afe-ace8-561a49d69d0c@mcclaincouplers.example>",
+      "received": "2026-11-03T15:48:00",
+      "source_po": "GEN-PO-0045",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Mcclain Coupling Industries",
+        "invoice_number": "22394",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0045",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "90480.99",
+        "tax": "11762.53",
+        "total": "102243.52",
+        "line_items": [
+          {
+            "part_no": "CPL-7100",
+            "description": "Type E coupler body",
+            "qty": 15,
+            "unit_price": "1688.51",
+            "line_total": "25327.65"
+          },
+          {
+            "part_no": "CPL-7105",
+            "description": "Type F coupler body",
+            "qty": 7,
+            "unit_price": "2099.10",
+            "line_total": "14693.70"
+          },
+          {
+            "part_no": "CPL-7112",
+            "description": "Coupler knuckle",
+            "qty": 6,
+            "unit_price": "461.67",
+            "line_total": "2770.02"
+          },
+          {
+            "part_no": "CPL-7118",
+            "description": "Coupler yoke",
+            "qty": 14,
+            "unit_price": "764.43",
+            "line_total": "10702.02"
+          },
+          {
+            "part_no": "CPL-7121",
+            "description": "Draft gear, cushioning",
+            "qty": 19,
+            "unit_price": "1510.02",
+            "line_total": "28690.38"
+          },
+          {
+            "part_no": "CPL-7130",
+            "description": "Coupler pin",
+            "qty": 9,
+            "unit_price": "58.97",
+            "line_total": "530.73"
+          },
+          {
+            "part_no": "CPL-7136",
+            "description": "Coupler carrier plate",
+            "qty": 18,
+            "unit_price": "216.55",
+            "line_total": "3897.90"
+          },
+          {
+            "part_no": "CPL-7142",
+            "description": "Uncoupling lever assembly",
+            "qty": 19,
+            "unit_price": "203.61",
+            "line_total": "3868.59"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-035",
+      "split": "dev",
+      "scenario": "unknown_vendor",
+      "underlying_scenario": null,
+      "expected_outcome": "EXCEPTION_UNKNOWN_VENDOR",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_035_inv-12787.pdf",
+      "pdf_sha256": "eb609ffd8dcad2ec88bee408bc4a57cd207329a134445f6796feaf7908cb8542",
+      "eml_file": "gen_035_inv-12787.eml",
+      "attachment_name": "Invoice_INV_12787.pdf",
+      "message_id": "<476c1d37-5149-4b9b-b2c2-7f8ef6f323af@fischer-couplers.example>",
+      "received": "2026-11-03T16:13:00",
+      "source_po": null,
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Fischer Coupling Industries",
+        "invoice_number": "INV-12787",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-9334",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "8633.58",
+        "tax": "1122.37",
+        "total": "9755.95",
+        "line_items": [
+          {
+            "part_no": "WHL-6020",
+            "description": "Forged wheel 36in",
+            "qty": 6,
+            "unit_price": "1185.18",
+            "line_total": "7111.08"
+          },
+          {
+            "part_no": "WHL-6044",
+            "description": "Truck bolster spring",
+            "qty": 30,
+            "unit_price": "50.75",
+            "line_total": "1522.50"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-036",
+      "split": "eval",
+      "scenario": "partial_never",
+      "underlying_scenario": null,
+      "expected_outcome": "STAYS_WAITING",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_036_mo-26-3650.pdf",
+      "pdf_sha256": "292f07ae20868e9a324f2b8ecebe382c200f5b9f07454d43193f9a5d041138be",
+      "eml_file": "gen_036_mo-26-3650.eml",
+      "attachment_name": "Invoice_MO_26_3650.pdf",
+      "message_id": "<f4ac05a9-5a56-4466-8713-3f51d010dd21@moorebrakeparts.example>",
+      "received": "2026-11-03T17:08:00",
+      "source_po": "GEN-PO-0036",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Moore Brake Products",
+        "invoice_number": "MO-26-3650",
+        "invoice_date": "2026-11-02",
+        "po_number": "GEN-PO-0036",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "23973.56",
+        "tax": "3116.56",
+        "total": "27090.12",
+        "line_items": [
+          {
+            "part_no": "BRK-4425",
+            "description": "Brake shoe key",
+            "qty": 112,
+            "unit_price": "11.44",
+            "line_total": "1281.28"
+          },
+          {
+            "part_no": "BRK-4460",
+            "description": "Brake cylinder piston",
+            "qty": 151,
+            "unit_price": "150.28",
+            "line_total": "22692.28"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-037",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-18",
+      "scanned": false,
+      "pdf_file": "gen_037_inv-36115.pdf",
+      "pdf_sha256": "7aa78f80238e521711f370f8982239de71c34a94cbdcbd78cf41fe2ea84a01ea",
+      "eml_file": "gen_037_inv-36115.eml",
+      "attachment_name": "Invoice_INV_36115.pdf",
+      "message_id": "<42f31e22-92f3-4129-87cd-95a4e87502d7@wolfebearings.example>",
+      "received": "2026-11-03T17:12:00",
+      "source_po": "GEN-PO-0079",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Wolfe Precision Bearings",
+        "invoice_number": "INV-36115",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0079",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "15715.93",
+        "tax": "2043.07",
+        "total": "17759.00",
+        "line_items": [
+          {
+            "part_no": "BRG-3301",
+            "description": "Tapered roller bearing, class K",
+            "qty": 27,
+            "unit_price": "315.19",
+            "line_total": "8510.13"
+          },
+          {
+            "part_no": "BRG-3314",
+            "description": "Bearing seal, rear",
+            "qty": 43,
+            "unit_price": "31.99",
+            "line_total": "1375.57"
+          },
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 56,
+            "unit_price": "21.91",
+            "line_total": "1226.96"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 61,
+            "unit_price": "16.59",
+            "line_total": "1011.99"
+          },
+          {
+            "part_no": "BRG-3333",
+            "description": "Bearing wear sleeve",
+            "qty": 56,
+            "unit_price": "64.13",
+            "line_total": "3591.28"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-038",
+      "split": "eval",
+      "scenario": "scanned",
+      "underlying_scenario": "clean",
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": true,
+      "pdf_file": "gen_038_10181.pdf",
+      "pdf_sha256": "8ad44bab830f91ee9e56d76292fe18c96a6369b4400a3bf11bb19136ace234f8",
+      "eml_file": "gen_038_10181.eml",
+      "attachment_name": "Invoice_10181.pdf",
+      "message_id": "<33e8c280-7729-4eb5-956a-047109ab9fd2@robinsonbearings.example>",
+      "received": "2026-11-03T17:12:00",
+      "source_po": "GEN-PO-0024",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Robinson Bearing Co",
+        "invoice_number": "10181",
+        "invoice_date": "2026-11-02",
+        "po_number": "GEN-PO-0024",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "28018.27",
+        "tax": "3642.38",
+        "total": "31660.65",
+        "line_items": [
+          {
+            "part_no": "BRG-3305",
+            "description": "Tapered roller bearing, class F",
+            "qty": 59,
+            "unit_price": "292.38",
+            "line_total": "17250.42"
+          },
+          {
+            "part_no": "BRG-3310",
+            "description": "Bearing adapter",
+            "qty": 39,
+            "unit_price": "140.24",
+            "line_total": "5469.36"
+          },
+          {
+            "part_no": "BRG-3314",
+            "description": "Bearing seal, rear",
+            "qty": 62,
+            "unit_price": "34.22",
+            "line_total": "2121.64"
+          },
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 15,
+            "unit_price": "19.43",
+            "line_total": "291.45"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 50,
+            "unit_price": "18.06",
+            "line_total": "903.00"
+          },
+          {
+            "part_no": "BRG-3327",
+            "description": "Lubricant cartridge",
+            "qty": 70,
+            "unit_price": "28.32",
+            "line_total": "1982.40"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-039",
+      "split": "eval",
+      "scenario": "exact_duplicate",
+      "underlying_scenario": null,
+      "expected_outcome": "REJECT_DUPLICATE",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_039_10081.pdf",
+      "pdf_sha256": "32d0e2eabf6fccf38bb4fd6d08f16f55d2d7224c16d1d2c0001ecc8f2db00f19",
+      "eml_file": "gen_039_10081.eml",
+      "attachment_name": "Invoice_10081.pdf",
+      "message_id": "<f662ef35-f38e-441f-a503-b14b4f7b549a@robinsonbearings.example>",
+      "received": "2026-11-03T17:28:00",
+      "source_po": "GEN-PO-0020",
+      "duplicate_of": "INV-008",
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Robinson Bearing Co",
+        "invoice_number": "10081",
+        "invoice_date": "2026-11-01",
+        "po_number": "GEN-PO-0020",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "8407.57",
+        "tax": "1092.98",
+        "total": "9500.55",
+        "line_items": [
+          {
+            "part_no": "BRG-3301",
+            "description": "Tapered roller bearing, class K",
+            "qty": 10,
+            "unit_price": "324.38",
+            "line_total": "3243.80"
+          },
+          {
+            "part_no": "BRG-3314",
+            "description": "Bearing seal, rear",
+            "qty": 79,
+            "unit_price": "34.22",
+            "line_total": "2703.38"
+          },
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 69,
+            "unit_price": "19.43",
+            "line_total": "1340.67"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 62,
+            "unit_price": "18.06",
+            "line_total": "1119.72"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-040",
+      "split": "eval",
+      "scenario": "unknown_vendor",
+      "underlying_scenario": null,
+      "expected_outcome": "EXCEPTION_UNKNOWN_VENDOR",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_040_34844.pdf",
+      "pdf_sha256": "aa783763eadd118d04a42ae10026b6e7a5c78855ef67b200725b0700660fe471",
+      "eml_file": "gen_040_34844.eml",
+      "attachment_name": "Invoice_34844.pdf",
+      "message_id": "<0a68a046-4ba1-4163-8a6d-6bdaa6038b6a@miller-brakeparts.example>",
+      "received": "2026-11-03T17:34:00",
+      "source_po": null,
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Miller Braking Supply",
+        "invoice_number": "34844",
+        "invoice_date": "2026-11-02",
+        "po_number": "GEN-PO-9983",
+        "currency": "USD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "32073.06",
+        "tax": "0.00",
+        "total": "32073.06",
+        "line_items": [
+          {
+            "part_no": "VLV-5210",
+            "description": "Control valve, freight",
+            "qty": 35,
+            "unit_price": "471.50",
+            "line_total": "16502.50"
+          },
+          {
+            "part_no": "VLV-5226",
+            "description": "Drain valve",
+            "qty": 52,
+            "unit_price": "30.15",
+            "line_total": "1567.80"
+          },
+          {
+            "part_no": "VLV-5230",
+            "description": "Cut-out cock",
+            "qty": 47,
+            "unit_price": "57.40",
+            "line_total": "2697.80"
+          },
+          {
+            "part_no": "VLV-5215",
+            "description": "Relief valve",
+            "qty": 47,
+            "unit_price": "78.48",
+            "line_total": "3688.56"
+          },
+          {
+            "part_no": "VLV-5238",
+            "description": "Pressure regulating valve",
+            "qty": 40,
+            "unit_price": "190.41",
+            "line_total": "7616.40"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-041",
+      "split": "eval",
+      "scenario": "exact_duplicate",
+      "underlying_scenario": null,
+      "expected_outcome": "REJECT_DUPLICATE",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_041_14101.pdf",
+      "pdf_sha256": "e4011845cefe838436454a34219448f3b1c5e6b4452ec23c5683f3710dc8def8",
+      "eml_file": "gen_041_14101.eml",
+      "attachment_name": "Invoice_14101.pdf",
+      "message_id": "<267266c0-7bcd-4e13-a764-1572829fb5fc@johnsoncoatings.example>",
+      "received": "2026-11-03T21:08:00",
+      "source_po": "GEN-PO-0072",
+      "duplicate_of": "INV-021",
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Johnson Industrial Coatings",
+        "invoice_number": "14101",
+        "invoice_date": "2026-11-02",
+        "po_number": "GEN-PO-0072",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "59078.32",
+        "tax": "7680.18",
+        "total": "66758.50",
+        "line_items": [
+          {
+            "part_no": "PNT-8100",
+            "description": "Industrial enamel, black 20L",
+            "qty": 74,
+            "unit_price": "144.81",
+            "line_total": "10715.94"
+          },
+          {
+            "part_no": "PNT-8104",
+            "description": "Industrial enamel, red 20L",
+            "qty": 92,
+            "unit_price": "147.66",
+            "line_total": "13584.72"
+          },
+          {
+            "part_no": "PNT-8110",
+            "description": "Zinc-rich primer 20L",
+            "qty": 31,
+            "unit_price": "173.41",
+            "line_total": "5375.71"
+          },
+          {
+            "part_no": "PNT-8115",
+            "description": "Reflective stripe tape roll",
+            "qty": 85,
+            "unit_price": "93.37",
+            "line_total": "7936.45"
+          },
+          {
+            "part_no": "PNT-8120",
+            "description": "Thinner 20L",
+            "qty": 84,
+            "unit_price": "81.18",
+            "line_total": "6819.12"
+          },
+          {
+            "part_no": "PNT-8126",
+            "description": "Stencil kit, reporting marks",
+            "qty": 29,
+            "unit_price": "127.36",
+            "line_total": "3693.44"
+          },
+          {
+            "part_no": "PNT-8131",
+            "description": "Epoxy topcoat 20L",
+            "qty": 31,
+            "unit_price": "203.80",
+            "line_total": "6317.80"
+          },
+          {
+            "part_no": "PNT-8138",
+            "description": "Rust converter 4L",
+            "qty": 94,
+            "unit_price": "49.31",
+            "line_total": "4635.14"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-042",
+      "split": "dev",
+      "scenario": "partial_never",
+      "underlying_scenario": null,
+      "expected_outcome": "STAYS_WAITING",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_042_28271.pdf",
+      "pdf_sha256": "9b74b8570a08d15bf7e0abfa854e4d493d97aef59cb3c1ab99ea72b873cc7e64",
+      "eml_file": "gen_042_28271.eml",
+      "attachment_name": "Invoice_28271.pdf",
+      "message_id": "<55745355-601c-42b2-8057-65c36bb83914@millerbearings.example>",
+      "received": "2026-11-04T08:08:00",
+      "source_po": "GEN-PO-0019",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Miller Roller Bearings",
+        "invoice_number": "28271",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0019",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "53529.78",
+        "tax": "6958.87",
+        "total": "60488.65",
+        "line_items": [
+          {
+            "part_no": "BRG-3301",
+            "description": "Tapered roller bearing, class K",
+            "qty": 76,
+            "unit_price": "326.65",
+            "line_total": "24825.40"
+          },
+          {
+            "part_no": "BRG-3305",
+            "description": "Tapered roller bearing, class F",
+            "qty": 66,
+            "unit_price": "266.21",
+            "line_total": "17569.86"
+          },
+          {
+            "part_no": "BRG-3310",
+            "description": "Bearing adapter",
+            "qty": 45,
+            "unit_price": "122.71",
+            "line_total": "5521.95"
+          },
+          {
+            "part_no": "BRG-3314",
+            "description": "Bearing seal, rear",
+            "qty": 33,
+            "unit_price": "31.68",
+            "line_total": "1045.44"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 65,
+            "unit_price": "18.28",
+            "line_total": "1188.20"
+          },
+          {
+            "part_no": "BRG-3327",
+            "description": "Lubricant cartridge",
+            "qty": 72,
+            "unit_price": "27.14",
+            "line_total": "1954.08"
+          },
+          {
+            "part_no": "BRG-3333",
+            "description": "Bearing wear sleeve",
+            "qty": 21,
+            "unit_price": "67.85",
+            "line_total": "1424.85"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-043",
+      "split": "eval",
+      "scenario": "unknown_vendor",
+      "underlying_scenario": null,
+      "expected_outcome": "EXCEPTION_UNKNOWN_VENDOR",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_043_19060.pdf",
+      "pdf_sha256": "cda5c0bd2c3d916de71fb7aa7aff9ce27b03b63fd47718da6e184f460d315517",
+      "eml_file": "gen_043_19060.eml",
+      "attachment_name": "Invoice_19060.pdf",
+      "message_id": "<fe135601-9a20-438e-8735-fff827bcf9a9@blackwell-valves.example>",
+      "received": "2026-11-04T08:48:00",
+      "source_po": null,
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Blackwell Pneumatic Controls",
+        "invoice_number": "19060",
+        "invoice_date": "2026-11-02",
+        "po_number": "GEN-PO-9864",
+        "currency": "CAD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "10207.87",
+        "tax": "1327.02",
+        "total": "11534.89",
+        "line_items": [
+          {
+            "part_no": "VLV-5200",
+            "description": "Angle cock 1.25in",
+            "qty": 25,
+            "unit_price": "115.12",
+            "line_total": "2878.00"
+          },
+          {
+            "part_no": "VLV-5221",
+            "description": "Check valve",
+            "qty": 50,
+            "unit_price": "59.24",
+            "line_total": "2962.00"
+          },
+          {
+            "part_no": "VLV-5230",
+            "description": "Cut-out cock",
+            "qty": 19,
+            "unit_price": "90.48",
+            "line_total": "1719.12"
+          },
+          {
+            "part_no": "VLV-5215",
+            "description": "Relief valve",
+            "qty": 25,
+            "unit_price": "105.95",
+            "line_total": "2648.75"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-044",
+      "split": "eval",
+      "scenario": "amount_outlier",
+      "underlying_scenario": null,
+      "expected_outcome": "ANOMALY_AMOUNT",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_044_inv-36080.pdf",
+      "pdf_sha256": "27f476eef1607ec5eb22e6dd102ad050f771448b064ef07d5b04503adfedb35e",
+      "eml_file": "gen_044_inv-36080.eml",
+      "attachment_name": "Invoice_INV_36080.pdf",
+      "message_id": "<1db0b795-7d45-472d-a258-34a7f65e6257@wolfebearings.example>",
+      "received": "2026-11-04T08:54:00",
+      "source_po": "GEN-PO-0025",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": {
+        "type": "amount_outlier",
+        "vendor_history_mean": "17977.76",
+        "vendor_history_std": "2514.20",
+        "vendor_history_max": "24780.60",
+        "fee_line_added": true
+      },
+      "fields": {
+        "vendor_name": "Wolfe Precision Bearings",
+        "invoice_number": "INV-36080",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0025",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "65790.20",
+        "tax": "8552.73",
+        "total": "74342.93",
+        "line_items": [
+          {
+            "part_no": "BRG-3301",
+            "description": "Tapered roller bearing, class K",
+            "qty": 77,
+            "unit_price": "315.19",
+            "line_total": "24269.63"
+          },
+          {
+            "part_no": "BRG-3305",
+            "description": "Tapered roller bearing, class F",
+            "qty": 68,
+            "unit_price": "276.25",
+            "line_total": "18785.00"
+          },
+          {
+            "part_no": "BRG-3310",
+            "description": "Bearing adapter",
+            "qty": 11,
+            "unit_price": "139.13",
+            "line_total": "1530.43"
+          },
+          {
+            "part_no": "BRG-3314",
+            "description": "Bearing seal, rear",
+            "qty": 28,
+            "unit_price": "31.99",
+            "line_total": "895.72"
+          },
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 62,
+            "unit_price": "21.91",
+            "line_total": "1358.42"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 29,
+            "unit_price": "16.59",
+            "line_total": "481.11"
+          },
+          {
+            "part_no": "BRG-3327",
+            "description": "Lubricant cartridge",
+            "qty": 19,
+            "unit_price": "25.46",
+            "line_total": "483.74"
+          },
+          {
+            "part_no": "BRG-3333",
+            "description": "Bearing wear sleeve",
+            "qty": 70,
+            "unit_price": "64.13",
+            "line_total": "4489.10"
+          },
+          {
+            "part_no": "SVC-EXP",
+            "description": "Expedite and special handling charge",
+            "qty": 1,
+            "unit_price": "13497.05",
+            "line_total": "13497.05"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-045",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-15",
+      "scanned": false,
+      "pdf_file": "gen_045_sh-26-8449.pdf",
+      "pdf_sha256": "81177631c76789520f362703a3d2707c14dfec929bd96d3852b3554bb8ca432f",
+      "eml_file": "gen_045_sh-26-8449.eml",
+      "attachment_name": "Invoice_SH_26_8449.pdf",
+      "message_id": "<4181b461-6e51-406c-af54-05f31cb0145d@shaffercouplers.example>",
+      "received": "2026-11-04T10:48:00",
+      "source_po": "GEN-PO-0049",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Shaffer Coupler Works",
+        "invoice_number": "SH-26-8449",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0049",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "59339.02",
+        "tax": "7714.07",
+        "total": "67053.09",
+        "line_items": [
+          {
+            "part_no": "CPL-7100",
+            "description": "Type E coupler body",
+            "qty": 6,
+            "unit_price": "1885.16",
+            "line_total": "11310.96"
+          },
+          {
+            "part_no": "CPL-7105",
+            "description": "Type F coupler body",
+            "qty": 12,
+            "unit_price": "2225.34",
+            "line_total": "26704.08"
+          },
+          {
+            "part_no": "CPL-7112",
+            "description": "Coupler knuckle",
+            "qty": 4,
+            "unit_price": "397.76",
+            "line_total": "1591.04"
+          },
+          {
+            "part_no": "CPL-7118",
+            "description": "Coupler yoke",
+            "qty": 20,
+            "unit_price": "702.22",
+            "line_total": "14044.40"
+          },
+          {
+            "part_no": "CPL-7130",
+            "description": "Coupler pin",
+            "qty": 6,
+            "unit_price": "52.21",
+            "line_total": "313.26"
+          },
+          {
+            "part_no": "CPL-7136",
+            "description": "Coupler carrier plate",
+            "qty": 13,
+            "unit_price": "244.54",
+            "line_total": "3179.02"
+          },
+          {
+            "part_no": "CPL-7142",
+            "description": "Uncoupling lever assembly",
+            "qty": 11,
+            "unit_price": "199.66",
+            "line_total": "2196.26"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-046",
+      "split": "dev",
+      "scenario": "amount_outlier",
+      "underlying_scenario": null,
+      "expected_outcome": "ANOMALY_AMOUNT",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_046_10016.pdf",
+      "pdf_sha256": "abc951357ae2c9cd9d178a8d4da2d9b082359a2aeb521896e7be826c843689a3",
+      "eml_file": "gen_046_10016.eml",
+      "attachment_name": "Invoice_10016.pdf",
+      "message_id": "<3bed43b9-8a94-4aea-985d-059701fd6ef1@robinsonbearings.example>",
+      "received": "2026-11-04T12:05:00",
+      "source_po": "GEN-PO-0048",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": {
+        "type": "amount_outlier",
+        "vendor_history_mean": "15635.74",
+        "vendor_history_std": "2644.22",
+        "vendor_history_max": "19668.28",
+        "fee_line_added": false
+      },
+      "fields": {
+        "vendor_name": "Robinson Bearing Co",
+        "invoice_number": "10016",
+        "invoice_date": "2026-11-04",
+        "po_number": "GEN-PO-0048",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "52392.66",
+        "tax": "6811.05",
+        "total": "59203.71",
+        "line_items": [
+          {
+            "part_no": "BRG-3301",
+            "description": "Tapered roller bearing, class K",
+            "qty": 66,
+            "unit_price": "324.38",
+            "line_total": "21409.08"
+          },
+          {
+            "part_no": "BRG-3305",
+            "description": "Tapered roller bearing, class F",
+            "qty": 77,
+            "unit_price": "292.38",
+            "line_total": "22513.26"
+          },
+          {
+            "part_no": "BRG-3314",
+            "description": "Bearing seal, rear",
+            "qty": 76,
+            "unit_price": "34.22",
+            "line_total": "2600.72"
+          },
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 30,
+            "unit_price": "19.43",
+            "line_total": "582.90"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 56,
+            "unit_price": "18.06",
+            "line_total": "1011.36"
+          },
+          {
+            "part_no": "BRG-3327",
+            "description": "Lubricant cartridge",
+            "qty": 57,
+            "unit_price": "28.32",
+            "line_total": "1614.24"
+          },
+          {
+            "part_no": "BRG-3333",
+            "description": "Bearing wear sleeve",
+            "qty": 46,
+            "unit_price": "57.85",
+            "line_total": "2661.10"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-047",
+      "split": "eval",
+      "scenario": "reissue",
+      "underlying_scenario": null,
+      "expected_outcome": "EXCEPTION_REISSUE",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_047_28233.pdf",
+      "pdf_sha256": "60d8eb3f3cb46e60296df65b1c441f7874b1753452d025515ccd30b891244fe1",
+      "eml_file": "gen_047_28233.eml",
+      "attachment_name": "Invoice_28233.pdf",
+      "message_id": "<ab651368-50aa-4b74-b4f4-54bd6087c651@millerbearings.example>",
+      "received": "2026-11-04T15:01:00",
+      "source_po": "GEN-PO-0067",
+      "duplicate_of": null,
+      "reissue_of": "INV-032",
+      "reissue_change": "layout",
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Miller Roller Bearings",
+        "invoice_number": "28233",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0067",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "12113.89",
+        "tax": "1574.81",
+        "total": "13688.70",
+        "line_items": [
+          {
+            "part_no": "BRG-3301",
+            "description": "Tapered roller bearing, class K",
+            "qty": 33,
+            "unit_price": "326.65",
+            "line_total": "10779.45"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 73,
+            "unit_price": "18.28",
+            "line_total": "1334.44"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-048",
+      "split": "dev",
+      "scenario": "no_po",
+      "underlying_scenario": null,
+      "expected_outcome": "EXCEPTION_NO_PO",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_048_20901.pdf",
+      "pdf_sha256": "59f9fab467094008397d730598cbfde4a9d63394f441533835b0e7f69b3716aa",
+      "eml_file": "gen_048_20901.eml",
+      "attachment_name": "Invoice_20901.pdf",
+      "message_id": "<28c77186-583f-48e4-9d97-335a505554c2@rhodescouplers.example>",
+      "received": "2026-11-04T15:46:00",
+      "source_po": "GEN-PO-0052",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Rhodes Draft Systems",
+        "invoice_number": "20901",
+        "invoice_date": "2026-11-04",
+        "po_number": null,
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "79807.63",
+        "tax": "10374.99",
+        "total": "90182.62",
+        "line_items": [
+          {
+            "part_no": "CPL-7100",
+            "description": "Type E coupler body",
+            "qty": 16,
+            "unit_price": "1746.15",
+            "line_total": "27938.40"
+          },
+          {
+            "part_no": "CPL-7105",
+            "description": "Type F coupler body",
+            "qty": 9,
+            "unit_price": "2363.94",
+            "line_total": "21275.46"
+          },
+          {
+            "part_no": "CPL-7112",
+            "description": "Coupler knuckle",
+            "qty": 19,
+            "unit_price": "420.80",
+            "line_total": "7995.20"
+          },
+          {
+            "part_no": "CPL-7118",
+            "description": "Coupler yoke",
+            "qty": 9,
+            "unit_price": "697.82",
+            "line_total": "6280.38"
+          },
+          {
+            "part_no": "CPL-7121",
+            "description": "Draft gear, cushioning",
+            "qty": 11,
+            "unit_price": "1255.00",
+            "line_total": "13805.00"
+          },
+          {
+            "part_no": "CPL-7130",
+            "description": "Coupler pin",
+            "qty": 17,
+            "unit_price": "50.71",
+            "line_total": "862.07"
+          },
+          {
+            "part_no": "CPL-7142",
+            "description": "Uncoupling lever assembly",
+            "qty": 8,
+            "unit_price": "206.39",
+            "line_total": "1651.12"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-049",
+      "split": "dev",
+      "scenario": "exact_duplicate",
+      "underlying_scenario": null,
+      "expected_outcome": "REJECT_DUPLICATE",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_049_inv-11148.pdf",
+      "pdf_sha256": "d9c8ee5fb965e4b793e7765a47af03d0f3d7eb70344647d050b1e5f5efad5cd9",
+      "eml_file": "gen_049_inv-11148.eml",
+      "attachment_name": "Invoice_INV_11148.pdf",
+      "message_id": "<744f45ee-4300-46eb-b3ed-5fd288e3ca28@bernardcoatings.example>",
+      "received": "2026-11-04T16:30:00",
+      "source_po": "GEN-PO-0057",
+      "duplicate_of": "INV-022",
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Bernard Industrial Coatings",
+        "invoice_number": "INV-11148",
+        "invoice_date": "2026-11-02",
+        "po_number": "GEN-PO-0057",
+        "currency": "CAD",
+        "payment_terms": "2/10 Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "48711.94",
+        "tax": "6332.55",
+        "total": "55044.49",
+        "line_items": [
+          {
+            "part_no": "PNT-8100",
+            "description": "Industrial enamel, black 20L",
+            "qty": 37,
+            "unit_price": "146.77",
+            "line_total": "5430.49"
+          },
+          {
+            "part_no": "PNT-8104",
+            "description": "Industrial enamel, red 20L",
+            "qty": 29,
+            "unit_price": "149.62",
+            "line_total": "4338.98"
+          },
+          {
+            "part_no": "PNT-8115",
+            "description": "Reflective stripe tape roll",
+            "qty": 80,
+            "unit_price": "88.39",
+            "line_total": "7071.20"
+          },
+          {
+            "part_no": "PNT-8120",
+            "description": "Thinner 20L",
+            "qty": 87,
+            "unit_price": "79.60",
+            "line_total": "6925.20"
+          },
+          {
+            "part_no": "PNT-8126",
+            "description": "Stencil kit, reporting marks",
+            "qty": 77,
+            "unit_price": "114.35",
+            "line_total": "8804.95"
+          },
+          {
+            "part_no": "PNT-8131",
+            "description": "Epoxy topcoat 20L",
+            "qty": 64,
+            "unit_price": "231.76",
+            "line_total": "14832.64"
+          },
+          {
+            "part_no": "PNT-8138",
+            "description": "Rust converter 4L",
+            "qty": 24,
+            "unit_price": "54.52",
+            "line_total": "1308.48"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-050",
+      "split": "dev",
+      "scenario": "scanned",
+      "underlying_scenario": "partial_completes",
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-18",
+      "scanned": true,
+      "pdf_file": "gen_050_inv-36162.pdf",
+      "pdf_sha256": "66cdc4b3e47bba438da2f8589edd284bf8f3f13865283328392949435f0cd86e",
+      "eml_file": "gen_050_inv-36162.eml",
+      "attachment_name": "Invoice_INV_36162.pdf",
+      "message_id": "<9c761cae-f117-4603-9e8e-a80abde9d527@wolfebearings.example>",
+      "received": "2026-11-04T17:56:00",
+      "source_po": "GEN-PO-0064",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Wolfe Precision Bearings",
+        "invoice_number": "INV-36162",
+        "invoice_date": "2026-11-04",
+        "po_number": "GEN-PO-0064",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "8109.30",
+        "tax": "1054.21",
+        "total": "9163.51",
+        "line_items": [
+          {
+            "part_no": "BRG-3314",
+            "description": "Bearing seal, rear",
+            "qty": 31,
+            "unit_price": "31.99",
+            "line_total": "991.69"
+          },
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 66,
+            "unit_price": "21.91",
+            "line_total": "1446.06"
+          },
+          {
+            "part_no": "BRG-3327",
+            "description": "Lubricant cartridge",
+            "qty": 54,
+            "unit_price": "25.46",
+            "line_total": "1374.84"
+          },
+          {
+            "part_no": "BRG-3333",
+            "description": "Bearing wear sleeve",
+            "qty": 67,
+            "unit_price": "64.13",
+            "line_total": "4296.71"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-051",
+      "split": "eval",
+      "scenario": "price_above_po",
+      "underlying_scenario": null,
+      "expected_outcome": "ANOMALY_PRICE",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_051_sh-26-8393.pdf",
+      "pdf_sha256": "000587930ff8e8fdf8298cd052f29f45641b30869f509d490c88b47edf644743",
+      "eml_file": "gen_051_sh-26-8393.eml",
+      "attachment_name": "Invoice_SH_26_8393.pdf",
+      "message_id": "<b74f3e21-01b2-4455-978c-f2dce0f3426a@shaffercouplers.example>",
+      "received": "2026-11-05T07:22:00",
+      "source_po": "GEN-PO-0059",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": {
+        "type": "price_above_po",
+        "line_no": 2,
+        "part_no": "CPL-7105",
+        "po_unit_price": "2225.34",
+        "invoice_unit_price": "2326.15",
+        "pct_over": "4.53"
+      },
+      "fields": {
+        "vendor_name": "Shaffer Coupler Works",
+        "invoice_number": "SH-26-8393",
+        "invoice_date": "2026-11-05",
+        "po_number": "GEN-PO-0059",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "65095.04",
+        "tax": "8462.36",
+        "total": "73557.40",
+        "line_items": [
+          {
+            "part_no": "CPL-7100",
+            "description": "Type E coupler body",
+            "qty": 13,
+            "unit_price": "1885.16",
+            "line_total": "24507.08"
+          },
+          {
+            "part_no": "CPL-7105",
+            "description": "Type F coupler body",
+            "qty": 9,
+            "unit_price": "2326.15",
+            "line_total": "20935.35"
+          },
+          {
+            "part_no": "CPL-7112",
+            "description": "Coupler knuckle",
+            "qty": 20,
+            "unit_price": "397.76",
+            "line_total": "7955.20"
+          },
+          {
+            "part_no": "CPL-7118",
+            "description": "Coupler yoke",
+            "qty": 15,
+            "unit_price": "702.22",
+            "line_total": "10533.30"
+          },
+          {
+            "part_no": "CPL-7130",
+            "description": "Coupler pin",
+            "qty": 7,
+            "unit_price": "52.21",
+            "line_total": "365.47"
+          },
+          {
+            "part_no": "CPL-7142",
+            "description": "Uncoupling lever assembly",
+            "qty": 4,
+            "unit_price": "199.66",
+            "line_total": "798.64"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-052",
+      "split": "eval",
+      "scenario": "clean",
+      "underlying_scenario": null,
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_052_inv-36086.pdf",
+      "pdf_sha256": "9102069ec175c4d9a19ad2c0d903f0e87edcf9cb03e4063a08dca967db8be31d",
+      "eml_file": "gen_052_inv-36086.eml",
+      "attachment_name": "Invoice_INV_36086.pdf",
+      "message_id": "<cb6bb5ad-74a8-43d8-87e1-36e54f2f4c2e@wolfebearings.example>",
+      "received": "2026-11-05T07:30:00",
+      "source_po": "GEN-PO-0043",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Wolfe Precision Bearings",
+        "invoice_number": "INV-36086",
+        "invoice_date": "2026-11-05",
+        "po_number": "GEN-PO-0043",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "13137.21",
+        "tax": "1707.84",
+        "total": "14845.05",
+        "line_items": [
+          {
+            "part_no": "BRG-3310",
+            "description": "Bearing adapter",
+            "qty": 37,
+            "unit_price": "139.13",
+            "line_total": "5147.81"
+          },
+          {
+            "part_no": "BRG-3314",
+            "description": "Bearing seal, rear",
+            "qty": 75,
+            "unit_price": "31.99",
+            "line_total": "2399.25"
+          },
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 24,
+            "unit_price": "21.91",
+            "line_total": "525.84"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 54,
+            "unit_price": "16.59",
+            "line_total": "895.86"
+          },
+          {
+            "part_no": "BRG-3333",
+            "description": "Bearing wear sleeve",
+            "qty": 65,
+            "unit_price": "64.13",
+            "line_total": "4168.45"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-053",
+      "split": "eval",
+      "scenario": "scanned",
+      "underlying_scenario": "price_above_po",
+      "expected_outcome": "ANOMALY_PRICE",
+      "ready_day": null,
+      "scanned": true,
+      "pdf_file": "gen_053_inv-36170.pdf",
+      "pdf_sha256": "18b629fdf05e3c637233c04db47f603b6c51c03d06a3e64aeba9a488d9cd45af",
+      "eml_file": "gen_053_inv-36170.eml",
+      "attachment_name": "Invoice_INV_36170.pdf",
+      "message_id": "<e0996a1d-4eb8-4fd4-97d4-2e7a707c9aa8@wolfebearings.example>",
+      "received": "2026-11-05T07:46:00",
+      "source_po": "GEN-PO-0017",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": {
+        "type": "price_above_po",
+        "line_no": 1,
+        "part_no": "BRG-3318",
+        "po_unit_price": "21.91",
+        "invoice_unit_price": "23.23",
+        "pct_over": "6.02"
+      },
+      "fields": {
+        "vendor_name": "Wolfe Precision Bearings",
+        "invoice_number": "INV-36170",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0017",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "2485.85",
+        "tax": "323.16",
+        "total": "2809.01",
+        "line_items": [
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 35,
+            "unit_price": "23.23",
+            "line_total": "813.05"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 64,
+            "unit_price": "16.59",
+            "line_total": "1061.76"
+          },
+          {
+            "part_no": "BRG-3327",
+            "description": "Lubricant cartridge",
+            "qty": 24,
+            "unit_price": "25.46",
+            "line_total": "611.04"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-054",
+      "split": "eval",
+      "scenario": "clean",
+      "underlying_scenario": null,
+      "expected_outcome": "READY",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_054_24356.pdf",
+      "pdf_sha256": "5250f28a8fc43134e44e80a17109d27251fcc4317a5533750835b0f8963cc0de",
+      "eml_file": "gen_054_24356.eml",
+      "attachment_name": "Invoice_24356.pdf",
+      "message_id": "<37b23483-7446-4cb5-8591-fd809ac02c28@fowlerwheelset.example>",
+      "received": "2026-11-05T07:53:00",
+      "source_po": "GEN-PO-0065",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Fowler Rolling Stock Wheels",
+        "invoice_number": "24356",
+        "invoice_date": "2026-11-05",
+        "po_number": "GEN-PO-0065",
+        "currency": "USD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "16825.52",
+        "tax": "0.00",
+        "total": "16825.52",
+        "line_items": [
+          {
+            "part_no": "WHL-6010",
+            "description": "Cast steel wheel 36in",
+            "qty": 8,
+            "unit_price": "560.80",
+            "line_total": "4486.40"
+          },
+          {
+            "part_no": "WHL-6012",
+            "description": "Cast steel wheel 33in",
+            "qty": 19,
+            "unit_price": "553.89",
+            "line_total": "10523.91"
+          },
+          {
+            "part_no": "WHL-6050",
+            "description": "Wheel tread gauge",
+            "qty": 27,
+            "unit_price": "67.23",
+            "line_total": "1815.21"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-055",
+      "split": "eval",
+      "scenario": "amount_outlier",
+      "underlying_scenario": null,
+      "expected_outcome": "ANOMALY_AMOUNT",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_055_20898.pdf",
+      "pdf_sha256": "06483af576ffd1a9022c019c18c0733dcdf4a6f1d18e58df8ba459b844eb610d",
+      "eml_file": "gen_055_20898.eml",
+      "attachment_name": "Invoice_20898.pdf",
+      "message_id": "<565a38ca-80bb-4a5c-9176-a7c96abe4443@rhodescouplers.example>",
+      "received": "2026-11-05T10:15:00",
+      "source_po": "GEN-PO-0018",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": {
+        "type": "amount_outlier",
+        "vendor_history_mean": "30899.86",
+        "vendor_history_std": "5055.50",
+        "vendor_history_max": "36027.63",
+        "fee_line_added": false
+      },
+      "fields": {
+        "vendor_name": "Rhodes Draft Systems",
+        "invoice_number": "20898",
+        "invoice_date": "2026-11-04",
+        "po_number": "GEN-PO-0018",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "98542.12",
+        "tax": "12810.48",
+        "total": "111352.60",
+        "line_items": [
+          {
+            "part_no": "CPL-7100",
+            "description": "Type E coupler body",
+            "qty": 11,
+            "unit_price": "1746.15",
+            "line_total": "19207.65"
+          },
+          {
+            "part_no": "CPL-7105",
+            "description": "Type F coupler body",
+            "qty": 14,
+            "unit_price": "2363.94",
+            "line_total": "33095.16"
+          },
+          {
+            "part_no": "CPL-7112",
+            "description": "Coupler knuckle",
+            "qty": 10,
+            "unit_price": "420.80",
+            "line_total": "4208.00"
+          },
+          {
+            "part_no": "CPL-7118",
+            "description": "Coupler yoke",
+            "qty": 18,
+            "unit_price": "697.82",
+            "line_total": "12560.76"
+          },
+          {
+            "part_no": "CPL-7121",
+            "description": "Draft gear, cushioning",
+            "qty": 19,
+            "unit_price": "1255.00",
+            "line_total": "23845.00"
+          },
+          {
+            "part_no": "CPL-7130",
+            "description": "Coupler pin",
+            "qty": 17,
+            "unit_price": "50.71",
+            "line_total": "862.07"
+          },
+          {
+            "part_no": "CPL-7136",
+            "description": "Coupler carrier plate",
+            "qty": 16,
+            "unit_price": "246.12",
+            "line_total": "3937.92"
+          },
+          {
+            "part_no": "CPL-7142",
+            "description": "Uncoupling lever assembly",
+            "qty": 4,
+            "unit_price": "206.39",
+            "line_total": "825.56"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-056",
+      "split": "eval",
+      "scenario": "price_above_po",
+      "underlying_scenario": null,
+      "expected_outcome": "ANOMALY_PRICE",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_056_10148.pdf",
+      "pdf_sha256": "cc53a1b987b9e4ad7358158b95057cfe24834d47fb7c55f49b5c06482f01b310",
+      "eml_file": "gen_056_10148.eml",
+      "attachment_name": "Invoice_10148.pdf",
+      "message_id": "<6a30d8fc-bf27-4c05-add1-a99807bb4821@robinsonbearings.example>",
+      "received": "2026-11-05T10:22:00",
+      "source_po": "GEN-PO-0026",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": {
+        "type": "price_above_po",
+        "line_no": 2,
+        "part_no": "BRG-3305",
+        "po_unit_price": "292.38",
+        "invoice_unit_price": "303.61",
+        "pct_over": "3.84"
+      },
+      "fields": {
+        "vendor_name": "Robinson Bearing Co",
+        "invoice_number": "10148",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0026",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "36418.86",
+        "tax": "4734.45",
+        "total": "41153.31",
+        "line_items": [
+          {
+            "part_no": "BRG-3301",
+            "description": "Tapered roller bearing, class K",
+            "qty": 46,
+            "unit_price": "324.38",
+            "line_total": "14921.48"
+          },
+          {
+            "part_no": "BRG-3305",
+            "description": "Tapered roller bearing, class F",
+            "qty": 39,
+            "unit_price": "303.61",
+            "line_total": "11840.79"
+          },
+          {
+            "part_no": "BRG-3310",
+            "description": "Bearing adapter",
+            "qty": 21,
+            "unit_price": "140.24",
+            "line_total": "2945.04"
+          },
+          {
+            "part_no": "BRG-3314",
+            "description": "Bearing seal, rear",
+            "qty": 65,
+            "unit_price": "34.22",
+            "line_total": "2224.30"
+          },
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 22,
+            "unit_price": "19.43",
+            "line_total": "427.46"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 22,
+            "unit_price": "18.06",
+            "line_total": "397.32"
+          },
+          {
+            "part_no": "BRG-3327",
+            "description": "Lubricant cartridge",
+            "qty": 66,
+            "unit_price": "28.32",
+            "line_total": "1869.12"
+          },
+          {
+            "part_no": "BRG-3333",
+            "description": "Bearing wear sleeve",
+            "qty": 31,
+            "unit_price": "57.85",
+            "line_total": "1793.35"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-057",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-16",
+      "scanned": false,
+      "pdf_file": "gen_057_mo-26-3610.pdf",
+      "pdf_sha256": "2eb5403a3eecf7f3351abd602ce69a9b053abeb848f063918028c56ae3b51ea9",
+      "eml_file": "gen_057_mo-26-3610.eml",
+      "attachment_name": "Invoice_MO_26_3610.pdf",
+      "message_id": "<d0280aff-8535-473f-95bb-e3504092fc50@moorebrakeparts.example>",
+      "received": "2026-11-05T11:34:00",
+      "source_po": "GEN-PO-0006",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Moore Brake Products",
+        "invoice_number": "MO-26-3610",
+        "invoice_date": "2026-11-05",
+        "po_number": "GEN-PO-0006",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "34007.48",
+        "tax": "4420.97",
+        "total": "38428.45",
+        "line_items": [
+          {
+            "part_no": "BRK-4412",
+            "description": "Composition brake shoe, low-friction",
+            "qty": 156,
+            "unit_price": "38.74",
+            "line_total": "6043.44"
+          },
+          {
+            "part_no": "BRK-4431",
+            "description": "Brake beam, truck-mounted",
+            "qty": 26,
+            "unit_price": "381.94",
+            "line_total": "9930.44"
+          },
+          {
+            "part_no": "BRK-4460",
+            "description": "Brake cylinder piston",
+            "qty": 120,
+            "unit_price": "150.28",
+            "line_total": "18033.60"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-058",
+      "split": "eval",
+      "scenario": "partial_completes",
+      "underlying_scenario": null,
+      "expected_outcome": "PARK_THEN_READY",
+      "ready_day": "2026-11-20",
+      "scanned": false,
+      "pdf_file": "gen_058_20009.pdf",
+      "pdf_sha256": "2b9269e8bee966c10c791a434818d0e3ee0646f8fb85dc906c67e12b7832b2f3",
+      "eml_file": "gen_058_20009.eml",
+      "attachment_name": "Invoice_20009.pdf",
+      "message_id": "<1640498e-4da8-44b4-9a53-d5add3ea4388@smithsafetygear.example>",
+      "received": "2026-11-05T12:04:00",
+      "source_po": "GEN-PO-0029",
+      "duplicate_of": null,
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Smith Safety Supply",
+        "invoice_number": "20009",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0029",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "47906.76",
+        "tax": "6227.88",
+        "total": "54134.64",
+        "line_items": [
+          {
+            "part_no": "SFT-9001",
+            "description": "Hi-vis vest, class 3",
+            "qty": 40,
+            "unit_price": "25.19",
+            "line_total": "1007.60"
+          },
+          {
+            "part_no": "SFT-9005",
+            "description": "Hard hat",
+            "qty": 178,
+            "unit_price": "28.25",
+            "line_total": "5028.50"
+          },
+          {
+            "part_no": "SFT-9010",
+            "description": "Safety glasses",
+            "qty": 245,
+            "unit_price": "9.66",
+            "line_total": "2366.70"
+          },
+          {
+            "part_no": "SFT-9014",
+            "description": "Steel-toe boots",
+            "qty": 37,
+            "unit_price": "165.09",
+            "line_total": "6108.33"
+          },
+          {
+            "part_no": "SFT-9020",
+            "description": "Hearing protection earmuffs",
+            "qty": 206,
+            "unit_price": "29.98",
+            "line_total": "6175.88"
+          },
+          {
+            "part_no": "SFT-9026",
+            "description": "Cut-resistant gloves",
+            "qty": 87,
+            "unit_price": "15.84",
+            "line_total": "1378.08"
+          },
+          {
+            "part_no": "SFT-9033",
+            "description": "Fall arrest harness",
+            "qty": 66,
+            "unit_price": "206.42",
+            "line_total": "13623.72"
+          },
+          {
+            "part_no": "SFT-9040",
+            "description": "Lockout/tagout kit",
+            "qty": 171,
+            "unit_price": "71.45",
+            "line_total": "12217.95"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-059",
+      "split": "eval",
+      "scenario": "exact_duplicate",
+      "underlying_scenario": null,
+      "expected_outcome": "REJECT_DUPLICATE",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_059_10047.pdf",
+      "pdf_sha256": "5c3be15ee7d1564d705cb0bc4ab7a46bdac5268bea9e7e87d0d67a989f5a73a0",
+      "eml_file": "gen_059_10047.eml",
+      "attachment_name": "Invoice_10047.pdf",
+      "message_id": "<6c3671dc-97db-46db-8f36-723b67c02942@robinsonbearings.example>",
+      "received": "2026-11-05T12:10:00",
+      "source_po": "GEN-PO-0056",
+      "duplicate_of": "INV-028",
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Robinson Bearing Co",
+        "invoice_number": "10047",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0056",
+        "currency": "CAD",
+        "payment_terms": "Net 45",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "1270.32",
+        "tax": "165.14",
+        "total": "1435.46",
+        "line_items": [
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 28,
+            "unit_price": "18.06",
+            "line_total": "505.68"
+          },
+          {
+            "part_no": "BRG-3327",
+            "description": "Lubricant cartridge",
+            "qty": 27,
+            "unit_price": "28.32",
+            "line_total": "764.64"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INV-060",
+      "split": "eval",
+      "scenario": "exact_duplicate",
+      "underlying_scenario": null,
+      "expected_outcome": "REJECT_DUPLICATE",
+      "ready_day": null,
+      "scanned": false,
+      "pdf_file": "gen_060_28244.pdf",
+      "pdf_sha256": "228e40bbac4afd949ebf830df94ec9b124c046bf5893baebd25e4c188b9a4ed5",
+      "eml_file": "gen_060_28244.eml",
+      "attachment_name": "Invoice_28244.pdf",
+      "message_id": "<2f0e40cf-fedf-4226-9801-a201e4985dd2@millerbearings.example>",
+      "received": "2026-11-05T20:45:00",
+      "source_po": "GEN-PO-0032",
+      "duplicate_of": "INV-033",
+      "reissue_of": null,
+      "reissue_change": null,
+      "anomaly": null,
+      "fields": {
+        "vendor_name": "Miller Roller Bearings",
+        "invoice_number": "28244",
+        "invoice_date": "2026-11-03",
+        "po_number": "GEN-PO-0032",
+        "currency": "CAD",
+        "payment_terms": "Net 30",
+        "bill_to": "Demo Rail Leasing Co.",
+        "subtotal": "12022.54",
+        "tax": "1562.93",
+        "total": "13585.47",
+        "line_items": [
+          {
+            "part_no": "BRG-3310",
+            "description": "Bearing adapter",
+            "qty": 29,
+            "unit_price": "122.71",
+            "line_total": "3558.59"
+          },
+          {
+            "part_no": "BRG-3314",
+            "description": "Bearing seal, rear",
+            "qty": 63,
+            "unit_price": "31.68",
+            "line_total": "1995.84"
+          },
+          {
+            "part_no": "BRG-3318",
+            "description": "Bearing end cap",
+            "qty": 22,
+            "unit_price": "18.91",
+            "line_total": "416.02"
+          },
+          {
+            "part_no": "BRG-3322",
+            "description": "Bearing retainer ring",
+            "qty": 72,
+            "unit_price": "18.28",
+            "line_total": "1316.16"
+          },
+          {
+            "part_no": "BRG-3327",
+            "description": "Lubricant cartridge",
+            "qty": 62,
+            "unit_price": "27.14",
+            "line_total": "1682.68"
+          },
+          {
+            "part_no": "BRG-3333",
+            "description": "Bearing wear sleeve",
+            "qty": 45,
+            "unit_price": "67.85",
+            "line_total": "3053.25"
+          }
+        ]
+      }
+    }
+  ],
+  "non_invoice_emails": [
+    {
+      "id": "NI-01",
+      "kind": "statement",
+      "eml_file": "gen_ni_01_statement.eml",
+      "message_id": "<56504add-1876-4e2e-b1b2-7d0e2000b0f0@johnsoncoatings.example>",
+      "subject": "Monthly account statement - October 2026",
+      "sender": "ar@johnsoncoatings.example",
+      "expected_outcome": "IGNORE"
+    },
+    {
+      "id": "NI-02",
+      "kind": "order_confirmation",
+      "eml_file": "gen_ni_02_order_confirmation.eml",
+      "message_id": "<259653eb-8024-4012-9402-f03aba1a42c7@gardnervalves.example>",
+      "subject": "Order confirmation for your purchase order",
+      "sender": "ar@gardnervalves.example",
+      "expected_outcome": "IGNORE"
+    },
+    {
+      "id": "NI-03",
+      "kind": "shipping_notice",
+      "eml_file": "gen_ni_03_shipping_notice.eml",
+      "message_id": "<edbfe329-a28c-41d6-ad0d-749dbda14833@wagnerwheelset.example>",
+      "subject": "Shipping notice - your order is on its way",
+      "sender": "ar@wagnerwheelset.example",
+      "expected_outcome": "IGNORE"
+    },
+    {
+      "id": "NI-04",
+      "kind": "po_acknowledgment",
+      "eml_file": "gen_ni_04_po_acknowledgment.eml",
+      "message_id": "<46805fa6-9eaa-4a78-a8f2-12b63c24ec88@robinsonbearings.example>",
+      "subject": "PO acknowledgment",
+      "sender": "ar@robinsonbearings.example",
+      "expected_outcome": "IGNORE"
+    },
+    {
+      "id": "NI-05",
+      "kind": "newsletter",
+      "eml_file": "gen_ni_05_newsletter.eml",
+      "message_id": "<2e13b2dc-d02d-4624-a448-c8ee3f8abb3d@gonzalezvalves.example>",
+      "subject": "Winter maintenance season: parts availability update",
+      "sender": "ar@gonzalezvalves.example",
+      "expected_outcome": "IGNORE"
+    }
+  ]
+}
