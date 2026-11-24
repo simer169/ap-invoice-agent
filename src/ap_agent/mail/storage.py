@@ -40,6 +40,25 @@ class S3Storage:
         )
         return key
 
+    def presigned_url(self, key: str, expires: int = 600) -> str:
+        """Time-limited (default 10 min) inline-PDF download URL. Do not log or cache it."""
+        return str(
+            self.client.generate_presigned_url(
+                "get_object",
+                Params={
+                    "Bucket": self.bucket,
+                    "Key": key,
+                    "ResponseContentType": "application/pdf",
+                    "ResponseContentDisposition": "inline",
+                },
+                ExpiresIn=expires,
+            )
+        )
+
+    def read(self, key: str) -> bytes:
+        obj = self.client.get_object(Bucket=self.bucket, Key=key)
+        return bytes(obj["Body"].read())
+
 
 def default_storage() -> S3Storage:
     import boto3

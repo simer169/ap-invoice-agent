@@ -27,6 +27,8 @@ class Settings(BaseSettings):
     IMAP_USER: str
     IMAP_APP_PASSWORD: SecretStr
     DATE_ORDER: Literal["DMY", "MDY"] = "DMY"  # reading of numeric dates such as 03/11/2026
+    DEMO_MODE: bool = False  # dev only: enables the dashboard's "simulate day" button
+    UI_DATABASE_URL: SecretStr | None = None  # read-only login for the dashboard (optional)
 
     @field_validator("*", mode="before")
     @classmethod
@@ -43,8 +45,9 @@ class DatabaseSettings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore", case_sensitive=True)
 
     DATABASE_URL: SecretStr | None = None
+    UI_DATABASE_URL: SecretStr | None = None
 
-    @field_validator("DATABASE_URL", mode="before")
+    @field_validator("DATABASE_URL", "UI_DATABASE_URL", mode="before")
     @classmethod
     def _blank_is_missing(cls, v: object) -> object:
         if isinstance(v, str) and not v.strip():
@@ -55,6 +58,13 @@ class DatabaseSettings(BaseSettings):
 def get_database_url() -> str | None:
     """Return DATABASE_URL, or None when it is not configured."""
     url = DatabaseSettings().DATABASE_URL
+    return url.get_secret_value() if url else None
+
+
+def get_ui_database_url() -> str | None:
+    """Read-only login for the dashboard if configured, else DATABASE_URL (local dev)."""
+    s = DatabaseSettings()
+    url = s.UI_DATABASE_URL or s.DATABASE_URL
     return url.get_secret_value() if url else None
 
 

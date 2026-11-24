@@ -1,4 +1,4 @@
-"""CLI: uv run python -m ap_agent.extract <pdf> | --s3-key KEY [--cache]"""
+"""CLI: python -m ap_agent.extract <pdf> | --s3-key KEY [--cache] | --pending [--yes]"""
 
 import argparse
 import json
@@ -19,16 +19,32 @@ def _read_s3(key: str) -> bytes:
     return obj["Body"].read()
 
 
+def _run_pending(yes: bool) -> int:
+    import psycopg
+
+    from ap_agent.extract.batch import run_pending
+
+    with psycopg.connect(get_settings().DATABASE_URL.get_secret_value()) as conn:
+        summary = run_pending(conn, _read_s3, yes=yes)
+    return 1 if summary.failed else 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="python -m ap_agent.extract")
     p.add_argument("pdf", nargs="?", type=Path, help="path to a local PDF")
     p.add_argument("--s3-key", help="read the PDF from the S3 bucket instead")
     p.add_argument("--cache", action="store_true", help="use the agent.extractions cache (DB)")
+    p.add_argument(
+        "--pending", action="store_true", help="extract every started PDF not yet cached"
+    )
+    p.add_argument("--yes", action="store_true", help="with --pending: skip the >20 PDFs prompt")
     p.add_argument("--refresh", action="store_true", help="with --cache: ignore the cached row")
     p.add_argument("--received", type=date.fromisoformat, help="email received date YYYY-MM-DD")
     args = p.parse_args(argv)
+    if args.pending:
+        return _run_pending(yes=args.yes)
     if bool(args.pdf) == bool(args.s3_key):
-        p.error("give exactly one of <pdf> or --s3-key")
+        p.error("give exactly one of <pdf>, --s3-key or --pending")
 
     data = _read_s3(args.s3_key) if args.s3_key else args.pdf.read_bytes()
 
