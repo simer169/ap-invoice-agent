@@ -1,17 +1,22 @@
 """Mail sources: where the watcher gets messages from."""
 
 import hashlib
+import logging
+from collections.abc import Callable
 from datetime import UTC, datetime
 from email import policy
 from email.message import EmailMessage
 from email.parser import BytesParser
 from email.utils import parsedate_to_datetime
 from pathlib import Path
-from typing import Protocol
+from typing import Any, Protocol, Self
 
+from imap_tools import MailMessageFlags
 from pydantic import BaseModel
 
 from ap_agent.config import get_settings
+
+log = logging.getLogger(__name__)
 
 
 class Attachment(BaseModel):
@@ -33,6 +38,10 @@ class MailSource(Protocol):
 
     def mark_seen(self, message_id: str) -> None:
         """Called by the watcher only after the message has been recorded."""
+        ...
+
+    def close(self) -> None:
+        """Release any session; called by the watcher at the end of a run."""
         ...
 
 
@@ -92,38 +101,63 @@ class LocalFolderSource:
     def mark_seen(self, message_id: str) -> None:
         return None
 
+    def close(self) -> None:
+        return None
+
+
+def _login_from_settings() -> Any:
+    """Open one IMAP session (INBOX not yet selected). Secrets come from config only."""
+    from imap_tools import MailBox
+
+    s = get_settings()
+    return MailBox(s.IMAP_HOST).login(s.IMAP_USER, s.IMAP_APP_PASSWORD.get_secret_value())
+
 
 class ImapSource:
-    """UNSEEN messages in INBOX; flagged seen only after the watcher records them."""
+    """UNSEEN messages in INBOX; flagged seen only after the watcher records them.
 
-    def __init__(self) -> None:
+    One IMAP session per run: fetch() logs in and keeps the session open; mark_seen() flags
+    the uid captured during fetch on that same session; close() logs out.
+    """
+
+    def __init__(self, mailbox_factory: Callable[[], Any] = _login_from_settings) -> None:
+        self._factory = mailbox_factory
+        self._mb: Any = None
         self._uids: dict[str, str] = {}
 
     def fetch(self) -> list[MailMessage]:
-        from imap_tools import AND, MailBox
+        from imap_tools import AND
 
-        s = get_settings()
+        self.close()
         out: list[MailMessage] = []
-        self._uids = {}
-        with MailBox(s.IMAP_HOST).login(
-            s.IMAP_USER, s.IMAP_APP_PASSWORD.get_secret_value(), initial_folder="INBOX"
-        ) as mb:
-            for m in mb.fetch(AND(seen=False), mark_seen=False, bulk=False):
-                uid = m.uid or ""
-                parsed = parse_eml(m.obj.as_bytes(), f"imap-{uid}")
-                self._uids[parsed.message_id] = uid
-                out.append(parsed)
+        self._mb = self._factory()
+        self._mb.folder.set("INBOX", readonly=False)  # SELECT (read-write), never EXAMINE
+        for m in self._mb.fetch(AND(seen=False), mark_seen=False, bulk=True):
+            uid = m.uid or ""
+            parsed = parse_eml(m.obj.as_bytes(), f"imap-{uid}")
+            self._uids[parsed.message_id] = uid
+            out.append(parsed)
         out.sort(key=lambda x: x.received_at)
         return out
 
     def mark_seen(self, message_id: str) -> None:
-        from imap_tools import MailBox
-
         uid = self._uids.get(message_id)
-        if not uid:
+        if self._mb is None or not uid:
+            log.debug("mark_seen skipped for %s: no open session or uid", message_id)
             return
-        s = get_settings()
-        with MailBox(s.IMAP_HOST).login(
-            s.IMAP_USER, s.IMAP_APP_PASSWORD.get_secret_value(), initial_folder="INBOX"
-        ) as mb:
-            mb.flag(uid, "\\Seen", True)
+        self._mb.flag([uid], MailMessageFlags.SEEN, True)
+
+    def close(self) -> None:
+        mb, self._mb = self._mb, None
+        self._uids = {}
+        if mb is not None:
+            try:
+                mb.logout()
+            except Exception:
+                log.exception("IMAP logout failed")
+
+    def __enter__(self) -> Self:
+        return self
+
+    def __exit__(self, *exc: object) -> None:
+        self.close()

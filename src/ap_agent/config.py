@@ -1,6 +1,7 @@
 """Settings loaded from .env. The only place secrets are read."""
 
 from functools import lru_cache
+from typing import Literal
 
 from pydantic import SecretStr, ValidationError, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -25,6 +26,7 @@ class Settings(BaseSettings):
     IMAP_HOST: str
     IMAP_USER: str
     IMAP_APP_PASSWORD: SecretStr
+    DATE_ORDER: Literal["DMY", "MDY"] = "DMY"  # reading of numeric dates such as 03/11/2026
 
     @field_validator("*", mode="before")
     @classmethod

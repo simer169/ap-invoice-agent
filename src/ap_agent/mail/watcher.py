@@ -131,21 +131,24 @@ def _process(conn: psycopg.Connection, msg: MailMessage, storage: S3Storage) -> 
 def run_once(source: MailSource, conn: psycopg.Connection, storage: S3Storage) -> Counter[str]:
     """Process every message the source offers; returns counts per outcome."""
     counts: Counter[str] = Counter({o: 0 for o in OUTCOMES})
-    for msg in source.fetch():
-        if _already_recorded(conn, msg.message_id):
-            counts[SKIPPED] += 1
+    try:
+        for msg in source.fetch():
+            if _already_recorded(conn, msg.message_id):
+                counts[SKIPPED] += 1
+                _mark_seen(source, msg)
+                continue
+            try:
+                with conn.transaction():  # savepoint if the caller holds a transaction
+                    outcome = _process(conn, msg, storage)
+            except Exception as exc:
+                log.exception("failed to process %s", msg.message_id)
+                with conn.transaction():
+                    _record(conn, msg, ERROR, error_message=f"{type(exc).__name__}: {exc}"[:500])
+                outcome = ERROR
+            counts[outcome] += 1
             _mark_seen(source, msg)
-            continue
-        try:
-            with conn.transaction():  # savepoint if the caller holds a transaction
-                outcome = _process(conn, msg, storage)
-        except Exception as exc:
-            log.exception("failed to process %s", msg.message_id)
-            with conn.transaction():
-                _record(conn, msg, ERROR, error_message=f"{type(exc).__name__}: {exc}"[:500])
-            outcome = ERROR
-        counts[outcome] += 1
-        _mark_seen(source, msg)
+    finally:
+        source.close()
     return counts
 
 

@@ -194,3 +194,23 @@ def test_upload_skipped_when_object_exists(s3: S3Storage) -> None:
     assert s3.upload_pdf(data, when) == key
     assert s3.client.head_object(Bucket=BUCKET, Key=key)["LastModified"] == first_etag_time
     assert _object_count(s3) == 1
+
+
+def test_flag_failure_is_logged_and_batch_continues(
+    conn: psycopg.Connection, s3: S3Storage, caplog: pytest.LogCaptureFixture
+) -> None:
+    from ap_agent.mail.sources import ImapSource
+    from fake_imap import CountingFactory, FakeImapMessage, FakeMailBox
+
+    box = FakeMailBox([FakeImapMessage("201"), FakeImapMessage("202")], fail_flag_uids={"201"})
+    factory = CountingFactory(box)
+    with caplog.at_level("ERROR"):
+        counts = run_once(ImapSource(factory), conn, s3)
+
+    assert counts["PROCESSED"] == 2  # both recorded despite the first flag failing
+    assert [c[0] for c in box.flag_calls] == [["201"], ["202"]]  # batch not stopped
+    assert "could not mark" in caplog.text
+    assert factory.logins == 1
+    assert box.logged_out == 1  # run_once closed the session
+    for m in box.messages:
+        assert _row(conn, m.message_id)[0] == "PROCESSED"

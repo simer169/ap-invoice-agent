@@ -42,7 +42,11 @@ module-name = "ap_agent"
 [tool.pytest.ini_options]
 pythonpath = ["src", "."]
 testpaths = ["tests"]
-markers = ["integration: needs a real database (DATABASE_URL); skipped when unset"]
+markers = [
+    "integration: needs a real database (DATABASE_URL); skipped when unset",
+    "llm: calls the real LLM via OpenRouter and costs money; skipped by default",
+]
+addopts = "-m \"not llm\""
 
 [tool.ruff]
 line-length = 100
