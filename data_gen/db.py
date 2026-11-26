@@ -17,9 +17,7 @@ def clean(conn: psycopg.Connection) -> None:
     references a GEN- vendor/PO, the RESTRICT foreign key fails loudly instead.
     """
     p = {"p": GEN_PREFIX}
-    conn.execute(
-        f"DELETE FROM trex.vendor_invoice_history WHERE vendor_id IN ({_GEN_VENDORS})", p
-    )
+    conn.execute(f"DELETE FROM trex.vendor_invoice_history WHERE vendor_id IN ({_GEN_VENDORS})", p)
     conn.execute("DELETE FROM trex.receiving_reports WHERE starts_with(rr_number, %(p)s)", p)
     conn.execute("DELETE FROM trex.purchase_orders WHERE starts_with(po_number, %(p)s)", p)
     conn.execute("DELETE FROM trex.vendors WHERE starts_with(vendor_code, %(p)s)", p)

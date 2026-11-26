@@ -282,8 +282,10 @@ class _Planner:
 
     def _inflate_price(self, spec: InvoiceSpec) -> None:
         candidates = [i for i, ln in enumerate(spec.lines) if ln.unit_price >= 20]
-        idx = self.rng.choice(candidates) if candidates else max(
-            range(len(spec.lines)), key=lambda i: spec.lines[i].unit_price
+        idx = (
+            self.rng.choice(candidates)
+            if candidates
+            else max(range(len(spec.lines)), key=lambda i: spec.lines[i].unit_price)
         )
         old = spec.lines[idx]
         while True:
@@ -385,7 +387,9 @@ class _Planner:
             lines: list[Line] = []
             for part in rng.sample(cat.parts, rng.randint(2, 5)):
                 qty = rng.randint(*cat.qty_range)
-                price = money(Decimal(str(part.base_price)) * Decimal(str(rng.uniform(0.9, 1.1))) * fx)
+                price = money(
+                    Decimal(str(part.base_price)) * Decimal(str(rng.uniform(0.9, 1.1))) * fx
+                )
                 lines.append(
                     Line(
                         part_no=part.part_no,
@@ -395,7 +399,9 @@ class _Planner:
                         line_total=money(price * qty),
                     )
                 )
-            self.new("unknown_vendor", vinfo, lines, f"GEN-PO-{rng.randint(9000, 9999)}", None, None)
+            self.new(
+                "unknown_vendor", vinfo, lines, f"GEN-PO-{rng.randint(9000, 9999)}", None, None
+            )
 
         self._duplicates_and_reissues(clean)
         return self._finalize()
@@ -406,7 +412,10 @@ class _Planner:
         for o in originals:  # originals arrive early so the second email can follow
             o.email_dt = o.email_dt.replace(day=rng.randint(1, 3))
             o.invoice_date = min(o.invoice_date, o.email_dt.date())
-        dup_src, re_src = originals[: COUNTS["exact_duplicate"]], originals[COUNTS["exact_duplicate"] :]
+        dup_src, re_src = (
+            originals[: COUNTS["exact_duplicate"]],
+            originals[COUNTS["exact_duplicate"] :],
+        )
         for o in dup_src:
             self._key += 1
             later = o.email_dt + timedelta(days=rng.randint(1, 2), minutes=rng.randint(5, 600))
@@ -432,7 +441,13 @@ class _Planner:
             else:
                 layout = (o.layout + rng.randint(1, 2)) % 3
             email_day = max(o.email_dt.date() + timedelta(days=1), inv_date)
-            later = datetime(email_day.year, email_day.month, email_day.day, rng.randint(7, 17), rng.randint(0, 59))
+            later = datetime(
+                email_day.year,
+                email_day.month,
+                email_day.day,
+                rng.randint(7, 17),
+                rng.randint(0, 59),
+            )
             self.specs.append(
                 o.model_copy(
                     deep=True,
@@ -456,7 +471,9 @@ class _Planner:
         mid_rng = random.Random(f"{self.seed}-message-ids")
         for i, s in enumerate(specs, start=1):
             s.id = id_of[s.key]
-            s.message_id = f"<{uuid.UUID(int=mid_rng.getrandbits(128), version=4)}@{s.vendor.email_domain}>"
+            s.message_id = (
+                f"<{uuid.UUID(int=mid_rng.getrandbits(128), version=4)}@{s.vendor.email_domain}>"
+            )
             s.attachment_name = f"Invoice_{re.sub(r'[^A-Za-z0-9]+', '_', s.invoice_number)}.pdf"
             s.pdf_file = f"gen_{i:03d}_{_slug(s.invoice_number)}.pdf"
             s.eml_file = f"gen_{i:03d}_{_slug(s.invoice_number)}.eml"

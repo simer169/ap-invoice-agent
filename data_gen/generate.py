@@ -120,7 +120,9 @@ def _slug(text: str) -> str:
 
 
 def _ts(rng: random.Random, d: date) -> datetime:
-    return datetime(d.year, d.month, d.day, rng.randint(8, 15), rng.choice((0, 15, 30, 45)), tzinfo=UTC)
+    return datetime(
+        d.year, d.month, d.day, rng.randint(8, 15), rng.choice((0, 15, 30, 45)), tzinfo=UTC
+    )
 
 
 def _rand_date(rng: random.Random, first: date, last: date) -> date:
@@ -250,7 +252,9 @@ def _partial_receipts(
         if r < 0.45:
             got[ln.line_no] = ln.qty_ordered
         elif r < 0.80:  # short
-            got[ln.line_no] = min(ln.qty_ordered - 1, max(1, int(ln.qty_ordered * rng.uniform(0.3, 0.8))))
+            got[ln.line_no] = min(
+                ln.qty_ordered - 1, max(1, int(ln.qty_ordered * rng.uniform(0.3, 0.8)))
+            )
         else:
             got[ln.line_no] = 0
     first_line = lines[0].line_no
@@ -340,13 +344,17 @@ def _make_history(
         cat = cat_by_vendor[v.vendor_code]
         avg_price = sum(p.base_price for p in cat.parts) / len(cat.parts)
         avg_qty = sum(cat.qty_range) / 2
-        mean = avg_price * avg_qty * 3.5 * rng.uniform(0.6, 1.4) * (0.75 if v.currency == "USD" else 1)
+        mean = (
+            avg_price * avg_qty * 3.5 * rng.uniform(0.6, 1.4) * (0.75 if v.currency == "USD" else 1)
+        )
         n = rng.randint(8, 20)
         days = sorted(rng.sample(range(span + 1), n))
         for i, offset in enumerate(days, start=1):
             total = max(mean * 0.25, rng.gauss(mean, mean * 0.2))
             picks = rng.sample(cat.parts, rng.randint(1, 4))
-            summary = ", ".join(f"{rng.randint(2, 40)} x {p.part_no} {p.description}" for p in picks)
+            summary = ", ".join(
+                f"{rng.randint(2, 40)} x {p.part_no} {p.description}" for p in picks
+            )
             out.append(
                 HistoryInvoice(
                     vendor_code=v.vendor_code,

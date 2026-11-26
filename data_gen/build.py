@@ -1,6 +1,6 @@
 """Fill the trex schema with deterministic FAKE data.
 
-    uv run python -m data_gen.build --seed 42
+uv run python -m data_gen.build --seed 42
 """
 
 import argparse

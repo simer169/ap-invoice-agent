@@ -126,7 +126,11 @@ def render_invoice(spec: InvoiceSpec) -> bytes:
         c.drawString(tx, y - i * 16, k)
         c.drawRightString(W - MARGIN, y - i * 16, _money(val, cur))
     c.setFont(font, 8)
-    c.drawString(MARGIN, MARGIN, f"Payment terms: {v.payment_terms}. Please quote the invoice number on payment.")
+    c.drawString(
+        MARGIN,
+        MARGIN,
+        f"Payment terms: {v.payment_terms}. Please quote the invoice number on payment.",
+    )
     c.showPage()
     c.save()
     return buf.getvalue()

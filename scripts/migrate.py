@@ -6,6 +6,7 @@ from pathlib import Path
 import psycopg
 
 from ap_agent.config import get_database_url
+from ap_agent.graph.checkpointer import setup_checkpointer
 
 MIGRATIONS_DIR = Path(__file__).resolve().parent.parent / "db" / "migrations"
 _LOCK_KEY = 726_001  # arbitrary app-level advisory lock id
@@ -50,6 +51,7 @@ def main() -> int:
     try:
         with psycopg.connect(url, connect_timeout=10) as conn:
             applied = migrate(conn)
+        setup_checkpointer(url)  # LangGraph tables in schema langgraph (idempotent)
     except psycopg.Error as exc:
         print(f"FAIL migration: {type(exc).__name__}: {str(exc).splitlines()[0]}")
         return 1

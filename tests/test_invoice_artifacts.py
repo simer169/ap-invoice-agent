@@ -95,7 +95,9 @@ def test_split(out: Out) -> None:
 def test_emails(out: Out) -> None:
     ids = []
     for i in _inv(out):
-        msg = email.message_from_bytes((out.emls / i["eml_file"]).read_bytes(), policy=policy.default)
+        msg = email.message_from_bytes(
+            (out.emls / i["eml_file"]).read_bytes(), policy=policy.default
+        )
         ids.append(msg["Message-ID"])
         assert msg["Message-ID"] == i["message_id"]
         assert str(msg["From"]).split("@")[-1].rstrip(">").endswith(".example")
@@ -103,9 +105,14 @@ def test_emails(out: Out) -> None:
         pdfs = [a for a in msg.iter_attachments() if a.get_content_type() == "application/pdf"]
         assert len(pdfs) == 1
         assert pdfs[0].get_content() == (out.pdfs / i["pdf_file"]).read_bytes()
-        assert i["fields"]["invoice_number"] in msg["Subject"] or i["fields"]["po_number"] in msg["Subject"]
+        assert (
+            i["fields"]["invoice_number"] in msg["Subject"]
+            or i["fields"]["po_number"] in msg["Subject"]
+        )
     for n in out.data["non_invoice_emails"]:
-        msg = email.message_from_bytes((out.emls / n["eml_file"]).read_bytes(), policy=policy.default)
+        msg = email.message_from_bytes(
+            (out.emls / n["eml_file"]).read_bytes(), policy=policy.default
+        )
         ids.append(msg["Message-ID"])
         assert not list(msg.iter_attachments())
     assert len(ids) == len(set(ids)) == 65
@@ -153,7 +160,11 @@ def test_amounts_and_tax(out: Out) -> None:
         for ln in lines:
             assert Decimal(ln["line_total"]) == Decimal(ln["unit_price"]) * ln["qty"]
         assert Decimal(f["subtotal"]) == sum(Decimal(ln["line_total"]) for ln in lines)
-        tax = Decimal("0.00") if f["currency"] == "USD" else (Decimal(f["subtotal"]) * Decimal("0.13")).quantize(Decimal("0.01"))
+        tax = (
+            Decimal("0.00")
+            if f["currency"] == "USD"
+            else (Decimal(f["subtotal"]) * Decimal("0.13")).quantize(Decimal("0.01"))
+        )
         assert Decimal(f["tax"]) == tax
         assert Decimal(f["total"]) == Decimal(f["subtotal"]) + tax
         assert f["bill_to"] == "Demo Rail Leasing Co."
@@ -162,7 +173,11 @@ def test_amounts_and_tax(out: Out) -> None:
 def test_scenario_specifics(ds: Dataset, out: Out) -> None:
     pos = {p.po_number: p for p in ds.purchase_orders}
     known = {v.name for v in ds.vendors}
-    last_delivery = {p.po_number: max(r.received_at.date() for r in p.scheduled) for p in pos.values() if p.scheduled}
+    last_delivery = {
+        p.po_number: max(r.received_at.date() for r in p.scheduled)
+        for p in pos.values()
+        if p.scheduled
+    }
     for i in _inv(out):
         base = i["underlying_scenario"] or i["scenario"]
         f = i["fields"]
@@ -181,7 +196,9 @@ def test_scenario_specifics(ds: Dataset, out: Out) -> None:
                 assert po.status == "RECEIVED"
         if base == "partial_completes":
             po = pos[f["po_number"]]
-            assert po.status == "PARTIAL" and i["ready_day"] == last_delivery[po.po_number].isoformat()
+            assert (
+                po.status == "PARTIAL" and i["ready_day"] == last_delivery[po.po_number].isoformat()
+            )
             assert date(2026, 11, 6) <= date.fromisoformat(i["ready_day"]) <= date(2026, 11, 30)
         else:
             assert i["ready_day"] is None

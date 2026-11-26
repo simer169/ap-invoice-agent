@@ -1,6 +1,6 @@
 """Apply scheduled deliveries up to and including a day (idempotent).
 
-    uv run python -m data_gen.simulate --day 2026-11-15
+uv run python -m data_gen.simulate --day 2026-11-15
 """
 
 import argparse
