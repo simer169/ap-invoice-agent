@@ -5,8 +5,8 @@ functions). Every function only SELECTs, so a read-only connection or role is en
 """
 
 from datetime import date, datetime
-from decimal import Decimal
-from typing import Any
+from decimal import Decimal, InvalidOperation
+from typing import Any, Literal
 
 import psycopg
 from pydantic import BaseModel
@@ -394,3 +394,259 @@ def list_vendors(conn: psycopg.Connection[Any]) -> list[VendorRow]:
         )
         for r in rows
     ]
+
+
+# --- approval queue --------------------------------------------------------------------------
+
+Tab = Literal["ready", "exceptions", "waiting", "decided"]
+DECIDED_LIMIT = 50
+
+_TAB_SQL: dict[str, tuple[tuple[str, ...], str]] = {
+    "ready": (("READY",), "p.ready_at, p.id"),
+    "exceptions": (("EXCEPTION",), "p.parked_at, p.id"),
+    "waiting": (("WAITING",), "p.due_date NULLS LAST, p.id"),
+    "decided": (("ATTACHED", "REJECTED"), "p.decided_at DESC NULLS LAST, p.id DESC"),
+}
+
+_CARD_SQL = """
+SELECT p.thread_id, p.status, p.s3_key, p.vendor_id, v.name, p.invoice_number, p.invoice_date,
+       p.po_id, p.po_number, p.currency, p.total, p.due_date, p.discount_deadline, p.anomalies,
+       p.anomaly_report, p.review_json, p.extracted_json, p.decided_by, p.decided_at, p.decision,
+       p.decision_note
+FROM agent.parked_invoices p LEFT JOIN trex.vendors v ON v.id = p.vendor_id
+WHERE p.status = ANY(%(statuses)s)
+ORDER BY {order}
+LIMIT %(n)s
+"""
+
+
+class FlagChip(BaseModel):
+    code: str
+    severity: Literal["info", "warning", "block"]
+    message: str
+
+
+class Candidate(BaseModel):
+    id: int
+    label: str
+    score: float | None = None
+
+
+class ApprovalCard(BaseModel):
+    thread_id: str
+    status: str
+    s3_key: str | None
+    vendor_id: int | None
+    vendor_name: str | None
+    invoice_number: str | None
+    invoice_date: date | None
+    po_id: int | None
+    po_number: str | None
+    currency: str | None
+    total: Decimal | None
+    due_date: date | None
+    days_left: int | None
+    discount_deadline: date | None
+    reasons: list[str]
+    flags: list[FlagChip]
+    explanation: str | None
+    vendor_method: str | None
+    po_method: str | None
+    po_confidence: float | None
+    vendor_candidates: list[Candidate]
+    po_candidates: list[Candidate]
+    billed_by_part: dict[str, Decimal]
+    decided_by: str | None
+    decided_at: datetime | None
+    decision: str | None
+    decision_note: str | None
+
+    @property
+    def has_block_flag(self) -> bool:
+        return any(f.severity == "block" for f in self.flags)
+
+
+class CardLine(BaseModel):
+    line_no: int
+    part_no: str
+    description: str | None
+    ordered: Decimal
+    received: Decimal
+    billed: Decimal | None  # None: the invoice has no line with this part number
+
+
+class Notification(BaseModel):
+    id: int
+    created_at: datetime
+    thread_id: str | None
+    kind: str
+    title: str
+    body: str
+    read: bool
+
+
+def billed_quantities(extracted: dict[str, Any] | None) -> dict[str, Decimal]:
+    """Invoice quantity per part number (lines without a part number are not matched)."""
+    out: dict[str, Decimal] = {}
+    for item in (extracted or {}).get("line_items") or []:
+        part = str(item.get("part_no") or "").strip()
+        if not part:
+            continue
+        try:
+            qty = Decimal(str(item.get("quantity")))
+        except InvalidOperation:
+            continue
+        out[part] = out.get(part, Decimal(0)) + qty
+    return out
+
+
+def merge_card_lines(po_lines: list[POLine], billed: dict[str, Decimal]) -> list[CardLine]:
+    """PO lines ordered vs received vs billed."""
+    return [
+        CardLine(
+            line_no=ln.line_no,
+            part_no=ln.part_no,
+            description=ln.description,
+            ordered=ln.qty_ordered,
+            received=ln.qty_received,
+            billed=billed.get(ln.part_no),
+        )
+        for ln in po_lines
+    ]
+
+
+def _candidates(
+    items: list[dict[str, Any]] | None, id_key: str, label_keys: tuple[str, ...]
+) -> list[Candidate]:
+    out: list[Candidate] = []
+    for it in items or []:
+        if it.get(id_key) is None:
+            continue
+        label = next((str(it[k]) for k in label_keys if it.get(k)), str(it[id_key]))
+        score = it.get("score", it.get("confidence"))
+        out.append(
+            Candidate(
+                id=int(it[id_key]), label=label, score=float(score) if score is not None else None
+            )
+        )
+    return out
+
+
+def _card(r: tuple[Any, ...], today: date) -> ApprovalCard:
+    report: dict[str, Any] = r[14] or {}
+    review: dict[str, Any] = r[15] or {}
+    vendor: dict[str, Any] = review.get("vendor") or {}
+    po: dict[str, Any] = review.get("po") or {}
+    due: date | None = r[11]
+    return ApprovalCard(
+        thread_id=r[0],
+        status=r[1],
+        s3_key=r[2],
+        vendor_id=r[3],
+        vendor_name=r[4],
+        invoice_number=r[5],
+        invoice_date=r[6],
+        po_id=r[7],
+        po_number=r[8],
+        currency=r[9],
+        total=r[10],
+        due_date=due,
+        days_left=(due - today).days if due else None,
+        discount_deadline=r[12],
+        reasons=[str(x) for x in (r[13] or [])],
+        flags=[FlagChip.model_validate(f) for f in report.get("flags") or []],
+        explanation=report.get("explanation"),
+        vendor_method=vendor.get("method"),
+        po_method=po.get("method"),
+        po_confidence=po.get("confidence"),
+        vendor_candidates=_candidates(
+            vendor.get("candidates"), "vendor_id", ("name", "vendor_name")
+        ),
+        po_candidates=_candidates(po.get("candidates"), "po_id", ("po_number",)),
+        billed_by_part=billed_quantities(r[16]),
+        decided_by=r[17],
+        decided_at=r[18],
+        decision=r[19],
+        decision_note=r[20],
+    )
+
+
+def list_approval_cards(conn: psycopg.Connection[Any], tab: Tab, today: date) -> list[ApprovalCard]:
+    """Parked invoices for one queue tab. `today` is passed in (demo date or real date)."""
+    statuses, order = _TAB_SQL[tab]
+    sql = _CARD_SQL.format(order=order)
+    rows = conn.execute(
+        sql, {"statuses": list(statuses), "n": DECIDED_LIMIT if tab == "decided" else 500}
+    ).fetchall()
+    return [_card(r, today) for r in rows]
+
+
+def approval_counts(conn: psycopg.Connection[Any]) -> dict[str, int]:
+    rows = conn.execute(
+        "SELECT status, COUNT(*) FROM agent.parked_invoices GROUP BY status"
+    ).fetchall()
+    by = {str(r[0]): int(r[1]) for r in rows}
+    return {
+        "ready": by.get("READY", 0),
+        "exceptions": by.get("EXCEPTION", 0),
+        "waiting": by.get("WAITING", 0),
+        "decided": min(by.get("ATTACHED", 0) + by.get("REJECTED", 0), DECIDED_LIMIT),
+    }
+
+
+def card_po_lines(
+    conn: psycopg.Connection[Any], po_number: str | None, billed: dict[str, Decimal]
+) -> list[CardLine]:
+    """The card's PO lines: ordered vs received (from TREX) vs billed (from the invoice)."""
+    if not po_number:
+        return []
+    rows = conn.execute(
+        "SELECT plr.line_no, plr.part_no, pl.description, pl.unit_price, plr.qty_ordered, "
+        "plr.qty_received, plr.fully_received "
+        "FROM trex.po_line_receipt plr JOIN trex.po_lines pl ON pl.id = plr.po_line_id "
+        "JOIN trex.purchase_orders po ON po.id = plr.po_id "
+        "WHERE po.po_number = %s ORDER BY plr.line_no",
+        (po_number,),
+    ).fetchall()
+    lines = [
+        POLine(
+            line_no=r[0],
+            part_no=r[1],
+            description=r[2],
+            unit_price=r[3],
+            qty_ordered=r[4],
+            qty_received=r[5],
+            fully_received=bool(r[6]),
+        )
+        for r in rows
+    ]
+    return merge_card_lines(lines, billed)
+
+
+# --- notifications ---------------------------------------------------------------------------
+
+
+def unread_notification_count(conn: psycopg.Connection[Any]) -> int:
+    row = conn.execute("SELECT COUNT(*) FROM agent.notifications WHERE read_at IS NULL").fetchone()
+    return int(row[0]) if row else 0
+
+
+def list_notifications(conn: psycopg.Connection[Any], limit: int = 20) -> list[Notification]:
+    rows = conn.execute(
+        "SELECT id, created_at, thread_id, kind, title, body, read_at IS NOT NULL "
+        "FROM agent.notifications ORDER BY created_at DESC, id DESC LIMIT %s",
+        (limit,),
+    ).fetchall()
+    return [
+        Notification(
+            id=r[0], created_at=r[1], thread_id=r[2], kind=r[3], title=r[4], body=r[5], read=r[6]
+        )
+        for r in rows
+    ]
+
+
+def presigned_pdf_url(s3_key: str, expires: int = 600) -> str:
+    """Short-lived presigned URL for an invoice PDF (no DB; lives here so pages use one layer)."""
+    from ap_agent.mail.storage import default_storage
+
+    return default_storage().presigned_url(s3_key, expires=expires)

@@ -3,14 +3,16 @@
 from collections.abc import Iterator
 from contextlib import contextmanager
 from datetime import date
+from decimal import Decimal
+from typing import Any
 
 import psycopg
 import streamlit as st
 
+from ap_agent import decisions
 from ap_agent import ui_queries as q
 from ap_agent.config import get_database_url, get_settings, get_ui_database_url
 from ap_agent.extract.normalize import DateOrder
-from ap_agent.mail.storage import default_storage
 
 TTL_SECONDS = 30
 
@@ -79,9 +81,53 @@ def list_vendors() -> list[q.VendorRow]:
         return q.list_vendors(c)
 
 
+def today() -> date:
+    """The demo date when the demo data generator is present, else the real date."""
+    return demo_today() or date.today()
+
+
+@st.cache_data(ttl=TTL_SECONDS, show_spinner=False)
+def approval_cards(tab: q.Tab) -> list[q.ApprovalCard]:
+    with _conn() as c:
+        return q.list_approval_cards(c, tab, today())
+
+
+@st.cache_data(ttl=TTL_SECONDS, show_spinner=False)
+def approval_counts() -> dict[str, int]:
+    with _conn() as c:
+        return q.approval_counts(c)
+
+
+@st.cache_data(ttl=TTL_SECONDS, show_spinner=False)
+def card_po_lines(po_number: str | None, billed: dict[str, Decimal]) -> list[q.CardLine]:
+    with _conn() as c:
+        return q.card_po_lines(c, po_number, billed)
+
+
+def unread_notification_count() -> int:
+    with _conn() as c:  # not cached: the bell should be current
+        return q.unread_notification_count(c)
+
+
+def notifications() -> list[q.Notification]:
+    with _conn() as c:
+        return q.list_notifications(c)
+
+
+def submit_decision(thread_id: str, decision: dict[str, Any]) -> str:
+    """The only way the UI changes an invoice. Raises DecisionError when refused."""
+    status = decisions.submit_decision(thread_id, decision)
+    st.cache_data.clear()
+    return status
+
+
+def mark_notifications_read() -> None:
+    decisions.mark_notifications_read()
+
+
 def pdf_url(s3_key: str) -> str:
     """Fresh 10-minute presigned URL. Deliberately not cached, never displayed as text."""
-    return default_storage().presigned_url(s3_key, expires=600)
+    return q.presigned_pdf_url(s3_key, expires=600)
 
 
 def demo_mode() -> bool:

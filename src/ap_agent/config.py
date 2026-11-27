@@ -68,6 +68,27 @@ def get_ui_database_url() -> str | None:
     return url.get_secret_value() if url else None
 
 
+class SlackSettings(BaseSettings):
+    """Only SLACK_WEBHOOK_URL, so the poller runs without every other key configured."""
+
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore", case_sensitive=True)
+
+    SLACK_WEBHOOK_URL: SecretStr | None = None
+
+    @field_validator("SLACK_WEBHOOK_URL", mode="before")
+    @classmethod
+    def _blank_is_missing(cls, v: object) -> object:
+        if isinstance(v, str) and not v.strip():
+            return None
+        return v
+
+
+def get_slack_webhook_url() -> str | None:
+    """Return the Slack webhook URL (a secret: never print or log it), or None when unset."""
+    url = SlackSettings().SLACK_WEBHOOK_URL
+    return url.get_secret_value() if url else None
+
+
 class SettingsError(RuntimeError):
     """Raised when required settings are missing or invalid."""
 

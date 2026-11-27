@@ -46,25 +46,64 @@ class Deps:
     audit: Callable[[str, str, dict[str, Any]], None]
     # one agent.parked_invoices row as a dict (keyed by thread_id); idempotent upsert
     upsert_parked: Callable[[dict[str, Any]], None]
+    # NotifyEvent fields as JSON-safe dict; idempotent per (thread, kind)
+    notify: Callable[[dict[str, Any]], None]
+    # actor, thread_id, action, details: audit row written on behalf of a human
+    audit_as: Callable[[str, str, str, dict[str, Any]], None]
+    # vendor_id, po_id -> POMatch-like dict with po_number, or None when the PO is not the vendor's
+    load_po: Callable[[int, int], dict[str, Any] | None]
+    # thread_id, vendor_id, po_id, invoice dump, user, note -> trex.invoices id (idempotent)
+    attach_invoice: Callable[[str, int, int | None, dict[str, Any], str, str], int]
+    # thread_id, status, decision, user, note: marks the parked row decided (idempotent)
+    record_decision: Callable[[str, str, str, str, str], None]
+
+
+class AttachError(Exception):
+    """The trex invoice exists but is no longer attachable (already PAID or VOID)."""
 
 
 _UPSERT_PARKED = """
 INSERT INTO agent.parked_invoices
-    (thread_id, content_hash, s3_key, status, vendor_id, po_number, invoice_number,
-     invoice_date, due_date, currency, total, extracted_json, anomalies, anomaly_report, embedding, ready_at)
+    (thread_id, content_hash, s3_key, status, vendor_id, po_id, po_number, invoice_number,
+     invoice_date, due_date, discount_deadline, currency, total, extracted_json, anomalies,
+     anomaly_report, review_json, embedding, ready_at)
 VALUES
-    (%(thread_id)s, %(content_hash)s, %(s3_key)s, %(status)s, %(vendor_id)s, %(po_number)s,
-     %(invoice_number)s, %(invoice_date)s, %(due_date)s, %(currency)s, %(total)s,
-     %(extracted_json)s, %(anomalies)s, %(anomaly_report)s, %(embedding)s::vector,
+    (%(thread_id)s, %(content_hash)s, %(s3_key)s, %(status)s, %(vendor_id)s, %(po_id)s,
+     %(po_number)s,
+     %(invoice_number)s, %(invoice_date)s, %(due_date)s, %(discount_deadline)s, %(currency)s,
+     %(total)s,
+     %(extracted_json)s, %(anomalies)s, %(anomaly_report)s, %(review_json)s,
+     %(embedding)s::vector,
      CASE WHEN %(status)s = 'READY' THEN now() END)
 ON CONFLICT (thread_id) DO UPDATE SET
+    po_id = EXCLUDED.po_id, review_json = EXCLUDED.review_json,
     status = EXCLUDED.status, vendor_id = EXCLUDED.vendor_id, po_number = EXCLUDED.po_number,
     invoice_number = EXCLUDED.invoice_number, invoice_date = EXCLUDED.invoice_date,
-    due_date = EXCLUDED.due_date, currency = EXCLUDED.currency, total = EXCLUDED.total,
+    due_date = EXCLUDED.due_date, discount_deadline = EXCLUDED.discount_deadline, currency = EXCLUDED.currency, total = EXCLUDED.total,
     extracted_json = EXCLUDED.extracted_json, anomalies = EXCLUDED.anomalies,
     anomaly_report = EXCLUDED.anomaly_report, embedding = EXCLUDED.embedding,
     ready_at = CASE WHEN EXCLUDED.status = 'READY'
                     THEN COALESCE(agent.parked_invoices.ready_at, now()) END
+"""
+
+_ATTACH_INVOICE = """
+INSERT INTO trex.invoices
+    (vendor_id, po_id, invoice_number, invoice_date, currency, total, status, attached_at)
+VALUES (%(vendor_id)s, %(po_id)s, %(invoice_number)s, %(invoice_date)s, %(currency)s, %(total)s,
+        'ATTACHED', now())
+ON CONFLICT (vendor_id, invoice_number) DO UPDATE SET
+    status = 'ATTACHED', po_id = EXCLUDED.po_id, invoice_date = EXCLUDED.invoice_date,
+    currency = EXCLUDED.currency, total = EXCLUDED.total,
+    attached_at = COALESCE(trex.invoices.attached_at, now())
+WHERE trex.invoices.status IN ('PENDING', 'ATTACHED')
+RETURNING id
+"""
+
+_MARK_DECIDED = """
+UPDATE agent.parked_invoices
+SET status = %(status)s, decided_by = %(user)s, decided_at = COALESCE(decided_at, now()),
+    decision = %(decision)s, decision_note = %(note)s
+WHERE thread_id = %(thread_id)s
 """
 
 
@@ -168,7 +207,10 @@ def prod_deps(url: str) -> Deps:
         text = (report or {}).get("summary_text")
         vec = embed_texts([text])[0] if text else None  # local model; same text as the check
         params = {
+            "discount_deadline": None,
+            "po_id": None,
             **row,
+            "review_json": Jsonb(row["review_json"]) if row.get("review_json") else None,
             "anomaly_report": Jsonb(report) if report is not None else None,
             "embedding": to_vector_literal(vec) if vec is not None else None,
             "total": Decimal(row["total"]) if row.get("total") is not None else None,
@@ -177,6 +219,84 @@ def prod_deps(url: str) -> Deps:
         }
         with db() as conn:
             conn.execute(_UPSERT_PARKED, params)  # type: ignore[arg-type]
+
+    def _notify(event: dict[str, Any]) -> None:
+        from ap_agent.notify import NotifyEvent, notify
+
+        with db() as conn:
+            notify(conn, NotifyEvent.model_validate(event))
+
+    def _audit_as(actor: str, thread_id: str, action: str, details: dict[str, Any]) -> None:
+        with db() as conn:
+            conn.execute(
+                "INSERT INTO agent.audit_log (actor, action, ref, details) VALUES (%s, %s, %s, %s)",
+                (actor, action, thread_id, Jsonb(details)),
+            )
+
+    def _load_po(vendor_id: int, po_id: int) -> dict[str, Any] | None:
+        with db() as conn:
+            row = conn.execute(
+                "SELECT po_number FROM trex.purchase_orders WHERE id = %s AND vendor_id = %s",
+                (po_id, vendor_id),
+            ).fetchone()
+        if row is None:
+            return None
+        return {
+            "po_id": po_id,
+            "po_number": row[0],
+            "method": "manual",
+            "confidence": 1.0,
+            "reasons": ["chosen by a reviewer"],
+            "candidates": [],
+        }
+
+    def _attach(
+        thread_id: str,
+        vendor_id: int,
+        po_id: int | None,
+        inv: dict[str, Any],
+        user: str,
+        note: str,
+    ) -> int:
+        """Upsert trex.invoices and mark the parked row ATTACHED in one transaction."""
+        params = {
+            "vendor_id": vendor_id,
+            "po_id": po_id,
+            "invoice_number": inv["invoice_number"],
+            "invoice_date": date.fromisoformat(inv["invoice_date"]),
+            "currency": inv["currency"],
+            "total": Decimal(str(inv["total"])),
+        }
+        with psycopg.connect(url, connect_timeout=10) as conn, conn.transaction():
+            row = conn.execute(_ATTACH_INVOICE, params).fetchone()  # type: ignore[arg-type]
+            if row is None:
+                raise AttachError(
+                    f"trex invoice {params['invoice_number']} is already paid or void"
+                )
+            conn.execute(
+                _MARK_DECIDED,
+                {
+                    "status": "ATTACHED",
+                    "user": user,
+                    "decision": "approve",
+                    "note": note,
+                    "thread_id": thread_id,
+                },
+            )
+            return int(row[0])
+
+    def _record_decision(thread_id: str, status: str, decision: str, user: str, note: str) -> None:
+        with db() as conn:
+            conn.execute(
+                _MARK_DECIDED,
+                {
+                    "status": status,
+                    "user": user,
+                    "decision": decision,
+                    "note": note,
+                    "thread_id": thread_id,
+                },
+            )
 
     return Deps(
         extract=extract,
@@ -189,4 +309,9 @@ def prod_deps(url: str) -> Deps:
         anomaly_check=_anomalies,
         audit=_audit,
         upsert_parked=_upsert,
+        notify=_notify,
+        audit_as=_audit_as,
+        load_po=_load_po,
+        attach_invoice=_attach,
+        record_decision=_record_decision,
     )

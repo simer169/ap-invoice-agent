@@ -3,7 +3,7 @@
 from datetime import date
 from typing import Any
 
-from ap_agent.graph.deps import Deps, ExtractionError
+from ap_agent.graph.deps import AttachError, Deps, ExtractionError
 from ap_agent.graph.state import InvoiceState
 
 INVOICE: dict[str, Any] = {
@@ -39,6 +39,13 @@ class FakeWorld:
         self.calls: list[str] = []
         self.audits: list[tuple[str, str]] = []
         self.parked: dict[str, dict[str, Any]] = {}
+        self.notifications: list[dict[str, Any]] = []
+        self.decision_audits: list[tuple[str, str, str]] = []  # actor, thread_id, action
+        self.po_numbers: dict[tuple[int, int], str] = {(7, 11): "PO-1", (7, 12): "PO-2"}
+        self.trex: dict[tuple[int, str], dict[str, Any]] = {}  # (vendor_id, number) -> row
+        self.attach_calls = 0
+        self.attach_error: str | None = None  # set to make attach_invoice raise AttachError
+        self.decisions: dict[str, dict[str, str]] = {}  # thread_id -> last recorded decision
 
     def deps(self) -> Deps:
         w = self
@@ -87,6 +94,56 @@ class FakeWorld:
         def upsert_parked(row: dict[str, Any]) -> None:
             w.parked[row["thread_id"]] = row
 
+        def notify(event: dict[str, Any]) -> None:
+            if not any(n["thread_id"] == event["thread_id"] for n in w.notifications):
+                w.notifications.append(event)  # like the real unique (thread, kind) index
+
+        def audit_as(actor: str, thread_id: str, action: str, details: dict[str, Any]) -> None:
+            w.decision_audits.append((actor, thread_id, action))
+
+        def load_po(vendor_id: int, po_id: int) -> dict[str, Any] | None:
+            number = w.po_numbers.get((vendor_id, po_id))
+            if number is None:
+                return None
+            return {
+                "po_id": po_id,
+                "po_number": number,
+                "method": "manual",
+                "confidence": 1.0,
+                "reasons": [],
+                "candidates": [],
+            }
+
+        def attach_invoice(
+            thread_id: str,
+            vendor_id: int,
+            po_id: int | None,
+            inv: dict[str, Any],
+            user: str,
+            note: str,
+        ) -> int:
+            w.attach_calls += 1
+            if w.attach_error:
+                raise AttachError(w.attach_error)
+            key = (vendor_id, inv["invoice_number"])
+            w.trex.setdefault(key, {"id": len(w.trex) + 1})  # upsert: never a second row
+            w.trex[key].update(status="ATTACHED", po_id=po_id, user=user, note=note)
+            if thread_id in w.parked:
+                w.parked[thread_id]["status"] = "ATTACHED"
+            return int(w.trex[key]["id"])
+
+        def record_decision(
+            thread_id: str, status: str, decision: str, user: str, note: str
+        ) -> None:
+            w.decisions[thread_id] = {
+                "status": status,
+                "decision": decision,
+                "user": user,
+                "note": note,
+            }
+            if thread_id in w.parked:
+                w.parked[thread_id]["status"] = status
+
         return Deps(
             extract=extract,
             find_vendor=find_vendor,
@@ -98,6 +155,11 @@ class FakeWorld:
             anomaly_check=anomaly_check,
             audit=audit,
             upsert_parked=upsert_parked,
+            notify=notify,
+            audit_as=audit_as,
+            load_po=load_po,
+            attach_invoice=attach_invoice,
+            record_decision=record_decision,
         )
 
 

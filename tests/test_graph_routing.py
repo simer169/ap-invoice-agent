@@ -4,6 +4,8 @@ from typing import Any
 
 import pytest
 from langgraph.checkpoint.memory import InMemorySaver
+from langgraph.graph import END
+from langgraph.types import Command
 
 from ap_agent.graph.graph import (
     build_graph,
@@ -11,9 +13,10 @@ from ap_agent.graph.graph import (
     route_after_po,
     route_after_receipt,
     route_after_vendor,
+    route_after_wait,
 )
 from ap_agent.graph.nodes import NO_PO_NUMBER_REASON
-from ap_agent.graph.runner import resume_thread, run_thread, summarize
+from ap_agent.graph.runner import config_for, resume_thread, run_thread, summarize
 from graph_fakes import FakeWorld, initial_state
 
 TID = "invoice-abc"
@@ -86,7 +89,10 @@ def test_fully_received_goes_through_price_check_to_ready() -> None:
     w = FakeWorld()
     graph, s = _run(w)
     assert s.status == "READY" and s.reasons == []
-    assert _interrupt_payload(graph) == {"waiting_for": "human_approval"}
+    payload = _interrupt_payload(graph)
+    assert payload["waiting_for"] == "human_approval"
+    assert payload["summary"]["invoice_number"] == "INV-1" and payload["flags"] == []
+    assert len(w.notifications) == 1 and w.notifications[0]["kind"] == "PO_RECEIVED"
     row = w.parked[TID]
     assert row["status"] == "READY" and row["due_date"] == "2026-12-01"
     assert row["invoice_number"] == "INV-1" and row["po_number"] == "PO-1"
@@ -186,3 +192,25 @@ def test_pure_routers() -> None:
     assert route_after_po({"po": {"po_id": None}}) == "exception"
     assert route_after_receipt({"receipt": {"fully_received": False}}) == "park"
     assert route_after_receipt({"receipt": {"fully_received": True}}) == "price_check"
+
+
+def test_route_after_wait_loops_only_for_waiting() -> None:
+    assert route_after_wait({"status": "WAITING"}) == "check_receipt"
+    assert route_after_wait({"status": "READY"}) == END
+    assert route_after_wait({"status": "EXCEPTION"}) == END
+
+
+def test_waiting_thread_resumed_loops_back_and_drops_the_stale_receipt_reason() -> None:
+    w = FakeWorld()
+    w.fully_received = False
+    w.po = {**w.po, "method": "content_score"}  # adds NO_PO_NUMBER_REASON, which must survive
+    graph, s = _run(w)
+    assert s.status == "WAITING" and any("not fully received" in r for r in s.reasons)
+
+    w.fully_received = True
+    graph.invoke(Command(resume={"event": "po_received", "at": "t"}), config_for(TID))
+    after = summarize(graph, TID)
+    assert after.status == "READY" and after.waiting_for == "human_approval"
+    assert after.reasons == [NO_PO_NUMBER_REASON]
+    assert w.parked[TID]["status"] == "READY"
+    assert w.calls.count("extract") == 1  # only the tail of the graph re-ran
